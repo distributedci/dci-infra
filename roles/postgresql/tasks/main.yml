@@ -87,6 +87,7 @@
   lineinfile:
     dest: "{{ postgres_auth_conf }}"
     line: 'host    all             all  {{ apiip }}/32            {{ item }}'
+    regex: 'host    all             all  {{ apiip }}/32            {{ item }}'
     insertafter: '^#\sIPv4\slocal.+'
   with_items:
     - password
