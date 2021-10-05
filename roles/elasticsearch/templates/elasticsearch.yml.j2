@@ -1,0 +1,4 @@
+cluster.name: {{ elasticsearch_cluster_name }}
+node.name: {{ elasticsearch_node_name }}
+
+{{ elasticsearch_config | to_nice_yaml }}
