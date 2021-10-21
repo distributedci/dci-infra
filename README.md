@@ -26,3 +26,4 @@ deploy the minimal service required.
 - postgresql: Install and configure postgresql.
 - registry: Install and configure the container registry.
 - swift: Install an AIO swift.
+- dci-analytics: Install and configure the container dci-analytics.
