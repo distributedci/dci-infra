@@ -1,0 +1,9 @@
+---
+- name: Prepare
+  hosts: analytics
+  tasks:
+    - name: Install packages required by tests
+      package:
+        name:
+          - curl
+        state: present
