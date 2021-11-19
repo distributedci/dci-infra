@@ -1,0 +1,6 @@
+---
+- name: Converge
+  hosts: analytics
+  roles:
+    - common
+    - dci-analytics
