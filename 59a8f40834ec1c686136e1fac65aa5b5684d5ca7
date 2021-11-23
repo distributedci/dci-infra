@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "293a2dd5_83ba75b3",
+        "filename": "roles/dci-analytics/molecule/default/molecule.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2021-11-23T16:09:25Z",
+      "side": 1,
+      "message": "You certainly want to change this to \"analytics\"",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "59a8f40834ec1c686136e1fac65aa5b5684d5ca7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75f9fff1_913ceb1f",
+        "filename": "roles/dci-analytics/molecule/default/molecule.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2021-11-23T16:09:25Z",
+      "side": 1,
+      "message": "centos:8 ?",
+      "revId": "59a8f40834ec1c686136e1fac65aa5b5684d5ca7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4394d6d1_529ede97",
+        "filename": "roles/dci-analytics/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2021-11-23T16:09:25Z",
+      "side": 1,
+      "message": "You may not want to reload it everytime ansible runs.\n\nIf so, change this to \"state: started\" and use handlers to restart your services on config change \u0026 package update (you already do this below)",
+      "revId": "59a8f40834ec1c686136e1fac65aa5b5684d5ca7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc85fd33_419a80a9",
+        "filename": "roles/dci-analytics/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2021-11-23T16:09:25Z",
+      "side": 1,
+      "message": "This is redundant with the above loop",
+      "revId": "59a8f40834ec1c686136e1fac65aa5b5684d5ca7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6ff1c43_314ad8a3",
+        "filename": "roles/dci-analytics/templates/dci-analytics.env.j2",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2021-11-23T16:09:25Z",
+      "side": 1,
+      "message": "could you prefix the ansible variables with \"analytics\" or something like this, to be sure it doesn\u0027t collide with other services ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 37
+      },
+      "revId": "59a8f40834ec1c686136e1fac65aa5b5684d5ca7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": true
+    }
+  ]
+}
