@@ -198,6 +198,30 @@
       "revId": "59a8f40834ec1c686136e1fac65aa5b5684d5ca7",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9dcfe77_bd9239c9",
+        "filename": "roles/dci-analytics/templates/dci-analytics.env.j2",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2021-11-24T09:51:36Z",
+      "side": 1,
+      "message": "Ok, I thought these were new variables, if it\u0027s existing variables reused, this is fine like this then !",
+      "parentUuid": "1efd7b01_7944d310",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 37
+      },
+      "revId": "59a8f40834ec1c686136e1fac65aa5b5684d5ca7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
     }
   ]
 }
