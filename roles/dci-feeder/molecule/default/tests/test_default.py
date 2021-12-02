@@ -60,8 +60,8 @@ def test_dci_feeder_api_local_settings(host):
     assert f.contains("^DCI_CS_URL = 'https://dci-api.example.com'$")
     assert f.contains("^DCI_CLIENT_ID = 'feeder/1234567890'$")
     assert f.contains("^DCI_API_SECRET = 'ssssssecretttttt'$")
-    assert f.contains("^DCI_REPO_RSYNC_TARGET = "
-                      "'dci-repo.example.com:/data/dci_repo'$")
+    assert f.contains("^DCI_REPO_RSYNC_HOST = 'user@dci-repo.example.com'$")
+    assert f.contains("^DCI_REPO_RSYNC_DIRECTORY = '/data/dci_repo'$")
     assert f.contains("^DEST_REGISTRY_USER = 'reguser'$")
     assert f.contains("^DEST_REGISTRY_PASSWORD = 'regpasswd'$")
 

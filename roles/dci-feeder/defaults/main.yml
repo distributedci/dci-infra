@@ -3,7 +3,8 @@ feeder_wsgi_processes: "{{ ansible_processor_cores }}"
 feeder_wsgi_threads: "{{ ansible_processor_cores }}"
 feeder_dci_client_id: feeder/CHANGEME
 feeder_dci_api_secret: shhh_dont_talk_about_it
-feeder_repo_rsync_target: /repo
+feeder_repo_rsync_host: user@repo-host.distributed-ci.io
+feeder_repo_rsync_directory: /repo
 feeder_registry_user: admin_registry_user
 feeder_registry_password: shhh_dont_say_it
 
