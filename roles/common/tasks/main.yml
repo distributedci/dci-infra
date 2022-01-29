@@ -67,7 +67,7 @@
   yum_repository:
     name: RDO-OpenStack
     description: RDO YUM repo
-    baseurl: http://mirror.centos.org/centos/$releasever/cloud/$basearch/openstack-{{ openstack_version }}/
+    baseurl: http://mirror.centos.org/centos/{{ releasever }}/cloud/$basearch/openstack-{{ openstack_version }}/
     exclude: python-zmq, zeromq
     gpgcheck: no
 

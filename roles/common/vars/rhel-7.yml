@@ -1,5 +1,6 @@
 ---
 openstack_version: rocky
+releasever: 7
 python_policycoreutils: policycoreutils-python
 
 dciauth_package: python2-dciauth
