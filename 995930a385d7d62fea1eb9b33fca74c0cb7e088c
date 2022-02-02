@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7244bd54_5689eb91",
+        "filename": "roles/common/tasks/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2022-02-02T15:01:46Z",
+      "side": 1,
+      "message": "To keep using the same as other CentOS repositories, this should be either:\n- $releasever when using CentOS 7 (or deprecated CentOS 8 \u003c- so don\u0027t need to handle this case)\n- $stream when using CentOS-Stream-*\n\nThe `releasever` var then doesn\u0027t need to be used.",
+      "range": {
+        "startLine": 70,
+        "startChar": 45,
+        "endLine": 70,
+        "endChar": 61
+      },
+      "revId": "995930a385d7d62fea1eb9b33fca74c0cb7e088c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
