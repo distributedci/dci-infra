@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a90390d1_beddaf7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2022-02-14T22:58:48Z",
+      "side": 1,
+      "message": "data must be merged \u0026 ssl certificate generated before this is merged",
+      "revId": "d0abe60bad908da01a5f7d10fae5b42adff69516",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
