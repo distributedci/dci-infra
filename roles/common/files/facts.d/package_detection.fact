@@ -1,0 +1,8 @@
+#!/bin/bash
+rpm -q httpd >/dev/null
+if [[ $? -eq 0  ]]; then
+    httpd_installed=httpd
+else
+    httpd_installed=none
+fi
+echo "{\"httpd_installed\": \"$httpd_installed\"}"
