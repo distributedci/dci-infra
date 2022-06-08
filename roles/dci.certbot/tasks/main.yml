@@ -1,19 +1,8 @@
 ---
 # tasks file for dci_certbot
 - name: Install EPEL
-  block:
-    - name: Search for EPEL repo file
-      stat:
-        path: /etc/yum.repos.d/epel.repo
-      register: epel_dot_repo
-
-    - name: Install EPEL
-      package:
-        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version}}.noarch.rpm
-        state: present
-      become: true
-      become_user: root
-      when: epel_dot_repo.stat.exists is not defined or epel_dot_repo.stat.exists is False
+  include_role:
+    name: epel
 
 - name: Install Certbot
   dnf:

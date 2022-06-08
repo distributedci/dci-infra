@@ -19,8 +19,8 @@
   become: yes
   roles:
     - common
-    - role: redhat-cip.swiftbackmeup
-      when: swift_backmeup_disabled is not defined
+#    - role: redhat-cip.swiftbackmeup
+#      when: swift_backmeup_disabled is not defined
 #    - role: Spredzy.lecm
 #      when: ssl_enabled|bool
   tags:
