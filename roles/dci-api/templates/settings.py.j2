@@ -42,14 +42,13 @@ FILE_STORE = 'file'
 S3_STORE = 's3'
 
 STORE_ENGINE = '{{ store_engine }}'
+STORE_FILES_CONTAINER = '{{ store_files_container }}'
+STORE_COMPONENTS_CONTAINER = '{{ store_components_container }}'
+
 {% if store_engine == 's3' %}
 STORE_S3_AWS_ACCESS_KEY_ID = '{{ store_s3_aws_access_key_id }}'
 STORE_S3_AWS_SECRET_ACCESS_KEY = '{{ store_s3_aws_secret_access_key }}'
 STORE_S3_AWS_REGION = '{{ store_s3_aws_region }}'
-STORE_S3_BUCKET = {
-    "files": "{{ store_s3_dci_files_bucket }}",
-    "components": "{{ store_s3_dci_components_bucket }}",
-}
 STORE_S3_ENDPOINT_URL = None
 STORE_S3_SIGNATURE_VERSION = None
 {% elif store_engine == 'swift' %}
@@ -73,12 +72,8 @@ STORE_PROJECT_DOMAIN_ID = '{{ store_project_domain_id }}'
 {% if store_project_domain_name is defined %}
 STORE_PROJECT_DOMAIN_NAME = '{{ store_project_domain_name }}'
 {% endif %}
-STORE_FILES_CONTAINER = '{{ store_files_container }}'
-STORE_COMPONENTS_CONTAINER = '{{ store_components_container }}'
 {% elif store_engine == 'file'  %}
 STORE_FILE_PATH = '{{ store_file_path | default("/var/lib/dci-control-server/files") }}'
-STORE_FILES_CONTAINER = '{{ store_files_container }}'
-STORE_COMPONENTS_CONTAINER = '{{ store_components_container }}'
 {% endif %}
 
 # ZMQ Connection
