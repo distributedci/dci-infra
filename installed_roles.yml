@@ -1,2 +1,9 @@
-- src: redhat-cip.swiftbackmeup
-- src: Spredzy.lecm
+---
+roles:
+  # Install roles from Ansible Galaxy.
+  - name: redhat-cip.swiftbackmeup
+  - name: Spredzy.lecm
+
+collections:
+  # Install collections from Ansible Galaxy.
+  - name: containers.podman
