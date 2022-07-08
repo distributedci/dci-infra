@@ -114,16 +114,6 @@
     - dci-core
     - blog
 
-- name: Install the swift node
-  hosts: swift
-  remote_user: dci
-  become: yes
-  roles:
-    - httpd
-    - swift
-  tags:
-    - dci-core
-
 - name: Install-Repo-Server
   hosts: dci-repo
   remote_user: dci
