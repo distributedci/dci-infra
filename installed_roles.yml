@@ -1,2 +1,3 @@
 - src: redhat-cip.swiftbackmeup
 - src: Spredzy.lecm
+- src: containers.podman
