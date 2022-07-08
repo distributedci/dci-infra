@@ -123,6 +123,7 @@
     - swift
   tags:
     - dci-core
+  when: store_engine == "swift"
 
 - name: Install-Repo-Server
   hosts: dci-repo
