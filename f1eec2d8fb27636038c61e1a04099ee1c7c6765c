@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "f1eec2d8fb27636038c61e1a04099ee1c7c6765c",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "937382f4_10661dcb",
+        "filename": "roles/dci-api/templates/settings.py.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2022-07-21T13:50:36Z",
+      "side": 1,
+      "message": "None as a default, else the value.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 63
+      },
+      "revId": "f1eec2d8fb27636038c61e1a04099ee1c7c6765c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
