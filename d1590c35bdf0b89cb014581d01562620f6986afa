@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a4b5746_cfc70c0c",
+        "filename": "roles/dci-api/templates/settings.py.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2022-07-21T14:44:51Z",
+      "side": 1,
+      "message": "This will make a string with \u0027None\u0027 instead of the None  value.\n\nUse `{% if store_s3_endpoint_url|default(None) %}\u0027{{ store_s3_endpoint_url }}\u0027{% else %}None{% endif %}`",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 79
+      },
+      "revId": "d1590c35bdf0b89cb014581d01562620f6986afa",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
