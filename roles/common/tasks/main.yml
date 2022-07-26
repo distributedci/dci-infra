@@ -21,10 +21,9 @@
     - "rhel-{{ ansible_distribution_major_version }}.yml"
     - "rhel-7.yml"
 
-- name: Ensure EPEL is installed
-  package:
-    name: epel-release
-    state: present
+- name: Install EPEL
+  include_role:
+    name: epel
 
 - name: Ensure ca-certificates is up to date
   package:
@@ -67,8 +66,8 @@
   yum_repository:
     name: RDO-OpenStack
     description: RDO YUM repo
-    baseurl: http://mirror.centos.org/centos/{{ '$releasever' if ansible_distribution_major_version == '7' else '$stream' }}/cloud/$basearch/openstack-{{ openstack_version }}/
-    exclude: python-zmq, zeromq
+    baseurl: http://mirror.centos.org/centos/{{ '$releasever' if (ansible_distribution_major_version == '7') else '$releasever' + '-stream' }}/cloud/$basearch/openstack-{{ openstack_version }}/
+    includepkgs: python3-swiftclient python3-sqlalchemy-utils python3-keystone* python3-flask python3-alembic python3-werkzeug python3-stevedore python3-oslo* python-oslo-* python3-debtcollector python3-os-service-types python3-iso8601 python3-funcsigs python3-six
     gpgcheck: no
 
 - name: Install chrony
