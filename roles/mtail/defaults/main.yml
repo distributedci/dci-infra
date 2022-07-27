@@ -11,7 +11,7 @@ mtail_programs: []
 # Log files & acls
 
 # List of log files to watch
-mtail_logs: []
+mtail_logs:
 
 # Default to set acls to the direct folders containing log files
 # customize according to your needs if you need more.
@@ -33,4 +33,3 @@ mtail_extra_options: ""
 
 mtail_user: mtail
 mtail_group: mtail
-
