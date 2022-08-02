@@ -33,6 +33,40 @@
       "message": "niquel",
       "revId": "5ef82af4dd2c03a4058e547cc8e9b30200c04c5a",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3cc86e5_67d8b679",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2022-08-02T15:08:44Z",
+      "side": 1,
+      "message": "YOLO",
+      "revId": "5ef82af4dd2c03a4058e547cc8e9b30200c04c5a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05139fb1_01c17ac3",
+        "filename": "roles/yolo_backup/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2022-08-02T15:08:44Z",
+      "side": 1,
+      "message": "this should be /usr/bin/aws if you\u0027re installing via package, but really you don\u0027t need this since package will check if it\u0027s been installed first.",
+      "revId": "5ef82af4dd2c03a4058e547cc8e9b30200c04c5a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
