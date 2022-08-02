@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa869acb_18c58bab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2022-08-02T13:33:06Z",
+      "side": 1,
+      "message": "delegate_to doesn\u0027t work in this way …",
+      "revId": "9fff274ffc902f4459683d8face0358c3d8ae110",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
