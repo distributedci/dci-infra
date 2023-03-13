@@ -115,6 +115,16 @@
   tags:
     - dci-core
 
+- name: Copy HTTPD configuration
+  copy:
+    src: '{{ item }}'
+    dest: '/etc/httpd/conf/{{ item }}'
+  with_items:
+    - httpd.conf
+  notify: reload httpd
+  tags:
+    - dci-core
+
 - name: Copy SSL configuration
   copy:
     src: ssl-sec.conf

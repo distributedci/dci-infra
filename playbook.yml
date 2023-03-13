@@ -69,6 +69,12 @@
   roles:
     - dci-ui
 
+- name: Install-Stats
+  hosts: dci_blog
+  become: yes
+  roles:
+    - dci-stats
+
 - name: Install-fail2ban
   hosts: all
   become: yes
