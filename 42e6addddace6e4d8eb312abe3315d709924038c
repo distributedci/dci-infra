@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7408dab6_cf7481ae",
+        "filename": "playbook.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-03-13T14:35:35Z",
+      "side": 1,
+      "message": "Since this is for now specific to dci_blog, could you move this role inclusion along with the dci_blog role in \"Install the blog node\" ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 15
+      },
+      "revId": "42e6addddace6e4d8eb312abe3315d709924038c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
