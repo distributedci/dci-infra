@@ -22,6 +22,30 @@
       },
       "revId": "42e6addddace6e4d8eb312abe3315d709924038c",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a00032ff_f0deb01f",
+        "filename": "playbook.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 107
+      },
+      "writtenOn": "2023-03-14T09:54:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7408dab6_cf7481ae",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 15
+      },
+      "revId": "42e6addddace6e4d8eb312abe3315d709924038c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
