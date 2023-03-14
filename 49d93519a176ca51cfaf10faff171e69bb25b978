@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b010259_74f6a065",
+        "filename": "roles/httpd/tasks/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-03-14T09:13:02Z",
+      "side": 1,
+      "message": "Could you not overwrite the default one (it handles the default log files /var/log/httpd/access_log and /var/log/httpd/error_log which are still created in httpd.conf) but use for example /etc/logrotate.d/httpd-log-dirs or another name",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 32
+      },
+      "revId": "49d93519a176ca51cfaf10faff171e69bb25b978",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
