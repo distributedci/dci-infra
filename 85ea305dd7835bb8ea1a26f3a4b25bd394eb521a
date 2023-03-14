@@ -16,6 +16,46 @@
       "message": "Do not merge it now I\u0027m going to add the goaccess parsing workflow in this patch",
       "revId": "85ea305dd7835bb8ea1a26f3a4b25bd394eb521a",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b734bb95_03be8af2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-03-14T08:16:26Z",
+      "side": 1,
+      "message": "Since you\u0027re going to work more on it, I added another comment.",
+      "revId": "85ea305dd7835bb8ea1a26f3a4b25bd394eb521a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "597a2b02_499db7cb",
+        "filename": "roles/httpd/files/httpd.conf",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-03-14T08:16:26Z",
+      "side": 1,
+      "message": "If you\u0027re going to rework this patch a little bit, could you implement the pattern described in this article [1] to allow logging the correct IP either with or without the X-Forwarded-For header.\n\n[1] https://www.techstacks.com/howto/log-client-ip-and-xforwardedfor-ip-in-apache.html",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 108
+      },
+      "revId": "85ea305dd7835bb8ea1a26f3a4b25bd394eb521a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
