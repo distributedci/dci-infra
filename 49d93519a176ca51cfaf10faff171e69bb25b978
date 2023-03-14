@@ -1,6 +1,115 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c0cfff0_99346617",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-03-14T09:18:59Z",
+      "side": 1,
+      "message": "You missed some of the logs directives for the vhosts",
+      "revId": "49d93519a176ca51cfaf10faff171e69bb25b978",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c1449dc_d1446835",
+        "filename": "roles/dci-api/templates/dci_api.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-03-14T09:18:59Z",
+      "side": 1,
+      "message": "misses the combined/vs/proxy",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 48
+      },
+      "revId": "49d93519a176ca51cfaf10faff171e69bb25b978",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2058fd3_5bff8081",
+        "filename": "roles/dci-blog/templates/dci_blog.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-03-14T09:18:59Z",
+      "side": 1,
+      "message": "Misses the combined/vs/proxy",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "49d93519a176ca51cfaf10faff171e69bb25b978",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47c0bf68_0d0aaefb",
+        "filename": "roles/dci-stats/templates/dci_stats.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-03-14T09:18:59Z",
+      "side": 1,
+      "message": "Misses the combined/vs/proxy",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 50
+      },
+      "revId": "49d93519a176ca51cfaf10faff171e69bb25b978",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9850fdaf_31196c05",
+        "filename": "roles/dci-ui/templates/dci_ui.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-03-14T09:18:59Z",
+      "side": 1,
+      "message": "Misses the combined/vs/proxy",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 32
+      },
+      "revId": "49d93519a176ca51cfaf10faff171e69bb25b978",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b010259_74f6a065",
@@ -19,6 +128,29 @@
         "startChar": 0,
         "endLine": 140,
         "endChar": 32
+      },
+      "revId": "49d93519a176ca51cfaf10faff171e69bb25b978",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a3f6559_1a8571e1",
+        "filename": "roles/packages/templates/02_packages.distributed-ci.io.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-03-14T09:18:59Z",
+      "side": 1,
+      "message": "Misses the combined/vs/proxy and \u003cfolder name\u003e/error.log",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 64
       },
       "revId": "49d93519a176ca51cfaf10faff171e69bb25b978",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
