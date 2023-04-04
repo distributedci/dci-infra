@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 #
-# Copyright 2020 Red Hat, Inc.
+# Copyright 2023 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -15,17 +15,14 @@
 # under the License.
 
 ---
-- name: restart dci-feeder-api
-  systemd:
-    name: container-dci-feeder-api.service
-    state: restarted
-    enabled: true
-    daemon_reload: true
+- import_tasks: common.yml
 
-- name: restart-dci-feeder-worker
-  systemd: #  FIXME: CANT BE DONE LIKE THIS
-    name: "container-dci-feeder-worker@{{ item }}.service"
-    state: restarted
-    enabled: true
-    daemon_reload: true
-  loop: "{{ range(1, feeder_workers_count + 1) | list }}"
+- name: Create the dci-feeder-api systemd unit file
+  template:
+    src: container-dci-feeder-worker.service.j2
+    dest: /etc/systemd/system/container-dci-feeder-worker@.service
+    mode: '0644'
+    owner: root
+    group: root
+  notify:
+    - restart dci-feeder-worker
