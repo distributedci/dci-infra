@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "388fe81b_a751aff4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-04-05T12:26:47Z",
+      "side": 1,
+      "message": "A few small details to fix and it\u0027s good to go !",
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb4dcb55_9c0884a5",
+        "filename": "playbook.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-04-05T12:26:47Z",
+      "side": 1,
+      "message": "roles:\n  - dci-stats\ntags:\n  - dci-core\n  - stats",
+      "range": {
+        "startLine": 122,
+        "startChar": 1,
+        "endLine": 124,
+        "endChar": 15
+      },
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "933c8283_eefac1e2",
+        "filename": "roles/dci-stats/files/goaccess",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-04-05T12:26:47Z",
+      "side": 1,
+      "message": "You could make this file a template and use `OUTDIR\u003d{{ stats_directory }}`",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 26
+      },
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cda6126b_10da79fa",
+        "filename": "roles/dci-stats/tasks/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-04-05T12:26:47Z",
+      "side": 1,
+      "message": "you can remove this, the tag is applied for the whole role when imported from the main playbook",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a3f4214_d6690576",
+        "filename": "roles/dci-stats/tasks/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-04-05T12:26:47Z",
+      "side": 1,
+      "message": "trailing white spaces to remove",
+      "range": {
+        "startLine": 57,
+        "startChar": 18,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09d68da9_84609c5c",
+        "filename": "roles/dci-stats/tasks/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-04-05T12:26:47Z",
+      "side": 1,
+      "message": "You create only one folder but the script generates stats for all available vhosts.\n\nWill this be an issue ?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 27
+      },
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
