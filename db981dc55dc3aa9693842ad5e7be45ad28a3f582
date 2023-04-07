@@ -18,6 +18,23 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d27b6244_2070f8c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-04-07T10:02:46Z",
+      "side": 1,
+      "message": "well done ;)",
+      "revId": "db981dc55dc3aa9693842ad5e7be45ad28a3f582",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb165579_b57a1136",
@@ -31,6 +48,24 @@
       "writtenOn": "2023-04-07T09:32:09Z",
       "side": 1,
       "message": "typo: EPEL-9",
+      "revId": "db981dc55dc3aa9693842ad5e7be45ad28a3f582",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "654756c9_ebb1a3fc",
+        "filename": "roles/epel/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-04-07T10:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb165579_b57a1136",
       "revId": "db981dc55dc3aa9693842ad5e7be45ad28a3f582",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
