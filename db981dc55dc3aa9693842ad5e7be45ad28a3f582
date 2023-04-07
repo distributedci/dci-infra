@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77bb6c8f_43c4ec22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 166
+      },
+      "writtenOn": "2023-04-07T09:32:09Z",
+      "side": 1,
+      "message": "A minor typo to be fixed but otherwise: alright",
+      "revId": "db981dc55dc3aa9693842ad5e7be45ad28a3f582",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb165579_b57a1136",
+        "filename": "roles/epel/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 166
+      },
+      "writtenOn": "2023-04-07T09:32:09Z",
+      "side": 1,
+      "message": "typo: EPEL-9",
+      "revId": "db981dc55dc3aa9693842ad5e7be45ad28a3f582",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
