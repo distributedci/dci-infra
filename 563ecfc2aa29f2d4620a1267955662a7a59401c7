@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "390621d1_668ec987",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-04-21T12:27:59Z",
+      "side": 1,
+      "message": "Please don\u0027t change this behaviour.\n\nThese packages are upgraded in other places so that we can handle pre-upgrade and post-upgrade tasks.",
+      "revId": "563ecfc2aa29f2d4620a1267955662a7a59401c7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
