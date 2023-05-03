@@ -41,6 +41,30 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6b69dcc_c7c58531",
+        "filename": "playbook.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-05-03T07:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb4dcb55_9c0884a5",
+      "range": {
+        "startLine": 122,
+        "startChar": 1,
+        "endLine": 124,
+        "endChar": 15
+      },
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "933c8283_eefac1e2",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-04-05T12:26:47Z",
       "side": 1,
       "message": "You could make this file a template and use `OUTDIR\u003d{{ stats_directory }}`",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 26
+      },
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e30e2a1_b200ee7c",
+        "filename": "roles/dci-stats/files/goaccess",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-05-03T07:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "933c8283_eefac1e2",
       "range": {
         "startLine": 5,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53f4d0ee_148074bc",
+        "filename": "roles/dci-stats/tasks/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-05-03T07:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cda6126b_10da79fa",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a3f4214_d6690576",
@@ -110,6 +182,30 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b49d49e_0405f88d",
+        "filename": "roles/dci-stats/tasks/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-05-03T07:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a3f4214_d6690576",
+      "range": {
+        "startLine": 57,
+        "startChar": 18,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09d68da9_84609c5c",
@@ -123,6 +219,30 @@
       "writtenOn": "2023-04-05T12:26:47Z",
       "side": 1,
       "message": "You create only one folder but the script generates stats for all available vhosts.\n\nWill this be an issue ?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 27
+      },
+      "revId": "6d92a748e2bba5a8375a05c1af081a3cb0230013",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bc4ad15_4cec81e0",
+        "filename": "roles/dci-stats/tasks/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-05-03T07:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09d68da9_84609c5c",
       "range": {
         "startLine": 82,
         "startChar": 0,
