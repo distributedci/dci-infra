@@ -16,6 +16,24 @@
       "message": "Welp, will need to create a cron job or a lambda function to expire old backups then",
       "revId": "2668e82f43a0af50dbcefbfcd0ba449987faf950",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "102c43a4_d1bcf084",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-05-03T10:42:51Z",
+      "side": 1,
+      "message": "@Jorge this is now handled by a storage policy as explained in the Jira card.",
+      "parentUuid": "87475e28_dd3dba4f",
+      "revId": "2668e82f43a0af50dbcefbfcd0ba449987faf950",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
