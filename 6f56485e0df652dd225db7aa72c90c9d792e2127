@@ -16,6 +16,23 @@
       "message": "lgtm",
       "revId": "6f56485e0df652dd225db7aa72c90c9d792e2127",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af132bb6_c3ebefa5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-09-28T12:31:27Z",
+      "side": 1,
+      "message": "Workflow -1 waiting for the feeder patches to be merged.",
+      "revId": "6f56485e0df652dd225db7aa72c90c9d792e2127",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
