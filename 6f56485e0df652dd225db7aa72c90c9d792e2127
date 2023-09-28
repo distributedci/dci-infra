@@ -33,6 +33,23 @@
       "message": "Workflow -1 waiting for the feeder patches to be merged.",
       "revId": "6f56485e0df652dd225db7aa72c90c9d792e2127",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a80df81_f4902b99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 606
+      },
+      "writtenOn": "2023-09-28T14:36:35Z",
+      "side": 1,
+      "message": "dci-feeder-api patches have been merged",
+      "revId": "6f56485e0df652dd225db7aa72c90c9d792e2127",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
