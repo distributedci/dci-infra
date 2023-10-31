@@ -44,7 +44,7 @@
 
 - name: Install DCI packages GPG key
   rpm_key:
-    key: "https://packages.distributed-ci.io/RPM-GPG-KEY-distributedci"
+    key: "https://packages.distributed-ci.io/RPM-GPG-KEY-DCI-2024"
     state: present
 
 - name: Ensure dci-release is installed
