@@ -57,7 +57,7 @@
 
 - name: Ensure dci-release is installed
   package:
-    name: "http://packages.distributed-ci.io/dci-release.el{{ ansible_distribution_major_version }}.noarch.rpm"
+    name: "https://packages.distributed-ci.io/dci-release.el{{ ansible_distribution_major_version }}.noarch.rpm"
     state: present
   tags:
     - dci-core

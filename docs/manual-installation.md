@@ -26,7 +26,7 @@ Packages are available to install the DCI repositories. Packages are available f
 **Fedora 23**
 
 ``` sourceCode
-#> dnf -y install http://packages.distributed-ci.io/dci-release.fc23.noarch.rpm
+#> dnf -y install https://packages.distributed-ci.io/dci-release.fc23.noarch.rpm
 ```
 
 ### PostgreSQL

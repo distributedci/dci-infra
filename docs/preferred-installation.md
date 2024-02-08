@@ -45,7 +45,7 @@ If you are provisioning a Fedora 23 server make sure the `python2`,
 
 If your DNS setup is correct, you can log in the value of the `ui_servername` variable, with the Login field value being `admin`, and the Password field value being the contents of the `admin_password` variable.
 
-The full list of configuration variables is available in the [configuration variables](http://docs.distributed-ci.io/installation/configuration-variables.html) section.
+The full list of configuration variables is available in the [configuration variables](https://docs.distributed-ci.io/installation/configuration-variables.html) section.
 
 ## Test suite
 
