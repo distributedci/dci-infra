@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1e35253_df0bab7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2024-04-11T20:08:25Z",
+      "side": 1,
+      "message": "SSO_REALM as pointed by Jorge",
+      "revId": "b4c07e588f2329975b0cd7a0a43955e243a75ed6",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59aaa239_8484ecfa",
@@ -14,6 +31,24 @@
       "writtenOn": "2024-04-11T20:00:22Z",
       "side": 1,
       "message": "SSO_REAL or SSO_REALM ?",
+      "revId": "b4c07e588f2329975b0cd7a0a43955e243a75ed6",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e784b06b_65ac85f0",
+        "filename": "roles/dci-api/templates/settings.py.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2024-04-11T20:08:25Z",
+      "side": 1,
+      "message": "SSO_REALM",
+      "parentUuid": "59aaa239_8484ecfa",
       "revId": "b4c07e588f2329975b0cd7a0a43955e243a75ed6",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
