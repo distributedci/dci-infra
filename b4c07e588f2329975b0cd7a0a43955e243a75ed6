@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59aaa239_8484ecfa",
+        "filename": "roles/dci-api/templates/settings.py.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2024-04-11T20:00:22Z",
+      "side": 1,
+      "message": "SSO_REAL or SSO_REALM ?",
+      "revId": "b4c07e588f2329975b0cd7a0a43955e243a75ed6",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
