@@ -1,7 +1,7 @@
 ---
-openstack_version: ussuri
-rdo_repository_mirror_host: vault.centos.org
-rdo_repository_mirror_prefix: centos
+openstack_version: yoga
+rdo_repository_mirror_host: mirror.stream.centos.org
+rdo_repository_mirror_prefix: SIGs
 python_policycoreutils: python3-policycoreutils
 
 dciauth_package: python3-dciauth

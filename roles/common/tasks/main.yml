@@ -30,7 +30,7 @@
   yum_repository:
     name: RDO-OpenStack
     description: RDO YUM repo
-    baseurl: http://{{ rdo_repository_mirror_host }}/centos/$releasever-stream/cloud/$basearch/openstack-{{ openstack_version }}/
+    baseurl: http://{{ rdo_repository_mirror_host }}/{{ rdo_repository_mirror_prefix }}/$releasever-stream/cloud/$basearch/openstack-{{ openstack_version }}/
     includepkgs: python-oslo-i18n-lang.noarch python-oslo-utils-lang.noarch python3-alembic.noarch python3-debtcollector.noarch python3-flask.noarch python3-funcsigs.noarch python3-iso8601.noarch python3-keystoneauth1.noarch python3-keystoneclient.noarch python3-os-service-types.noarch python3-oslo-config.noarch python3-oslo-i18n.noarch python3-oslo-serialization.noarch  python3-oslo-utils.noarch python3-requests.noarch python3-six.noarch python3-sqlalchemy-utils.noarch python3-stevedore.noarch python3-swiftclient.noarch python3-werkzeug.noarch
     gpgcheck: no
 
