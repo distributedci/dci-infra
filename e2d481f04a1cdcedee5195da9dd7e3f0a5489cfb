@@ -1,0 +1,9 @@
+Workflow+1: François Charlier <francois.charlier@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Code-Review+1: Jorge Gallegos <jgallego@redhat.com>
+Code-Review+2: Haïkel Guémar <hguemar@fedoraproject.org>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Mon, 05 Aug 2024 14:59:38 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/dci-infra/+/32138
+Project: dci-infra
+Branch: refs/heads/master
