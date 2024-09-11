@@ -1,0 +1,8 @@
+Code-Review+2: Farid Da Encarnacao <fdaencar@redhat.com>
+Workflow+1: François Charlier <francois.charlier@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Wed, 11 Sep 2024 14:08:17 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/dci-infra/+/32305
+Project: dci-infra
+Branch: refs/heads/master
