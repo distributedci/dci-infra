@@ -1,0 +1,8 @@
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Code-Review+2: François Charlier <francois.charlier@redhat.com>
+Workflow+1: François Charlier <francois.charlier@redhat.com>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Wed, 11 Sep 2024 19:43:18 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/dci-infra/+/32307
+Project: dci-infra
+Branch: refs/heads/master
