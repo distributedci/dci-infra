@@ -14,3 +14,9 @@
     name: dci-analytics-sync.timer
     state: restarted
     enabled: yes
+
+- name: Restart httpd
+  systemd:
+    name: httpd
+    state: restarted
+    enabled: yes

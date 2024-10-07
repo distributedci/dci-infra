@@ -19,6 +19,21 @@
     - Restart dci-analytics container
     - Restart dci-analytics-sync timer
 
+- name: install httpd analytic conf
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/httpd/conf.d/{{ item }}"
+  loop:
+    - analytics.conf
+  notify:
+    - Restart httpd
+
+- name: Set httpd_can_network_connect flag on and keep it persistent across reboots
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+
 - name: Flush handlers
   meta: flush_handlers
 
