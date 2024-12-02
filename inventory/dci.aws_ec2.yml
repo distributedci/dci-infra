@@ -1,0 +1,30 @@
+plugin: amazon.aws.aws_ec2
+aws_profile: "{{ lookup('env', 'AWS_PROFILE') | default('dci_infra', true) }}"
+regions:
+  - us-east-1
+
+hostnames:
+  - tag:Name
+
+filters:
+  tag:app:
+    - dci
+
+keyed_groups:
+  - key: tags.env
+    separator: ""
+    trailing_separator: ""
+  - key: tags.ansible_groups.split(",")
+    separator: ""
+    trailing_separator: ""
+
+compose:
+  ansible_host: >
+    tags['Name']
+    + "."
+    + tags['app-code'].lower()
+    + "."
+    + tags['service-phase']
+    + "."
+    + placement['region']
+    + ".aws.redhat.com"

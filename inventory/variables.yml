@@ -1,0 +1,48 @@
+---
+all:
+  vars:
+    simple_packages:
+      - insights-client
+    simple_rhn_org_id: 11009103
+    simple_rhn_activation_key: jgallego-ak
+    podman_exporter_port: 9882
+    simple_container_quadlets:
+      podman-exporter:
+        image: quay.io/navidys/prometheus-podman-exporter:latest
+        command: >
+          --collector.image
+          --collector.network
+          --collector.pod
+          --collector.volume
+          --web.listen-address :{{ podman_exporter_port }}
+        ports:
+          - "{{ podman_exporter_port }}:{{ podman_exporter_port }}"
+        user: root
+        volumes:
+          - "/run/podman/podman.sock:/run/podman/podman.sock:ro"
+        security_labels:
+          disable: true
+        requires:
+          - podman.socket
+        env:
+          CONTAINER_HOST: unix:///run/podman/podman.sock
+        health:
+          cmd: "/bin/wget --spider localhost:{{ podman_exporter_port }}/-/healthy"
+
+monitoring:
+  vars:
+    simple_firewalld:
+      services:
+        ssh:
+        http:
+  hosts:
+    prom2:
+      simple_mounts:
+        /mnt/services:
+          src: /dev/disk/by-label/mnt-services
+          fstype: xfs
+          opts:
+            - defaults
+            - nofail
+            - _netdev
+            - comment=ansible

@@ -1,0 +1,89 @@
+---
+- name: Set host name
+  ansible.builtin.hostname:
+    name: "{{ ansible_host }}"
+    use: systemd
+
+- name: Mount file systems
+  ansible.posix.mount:
+    path: "{{ item.key }}"
+    src: "{{ item.value.src }}"
+    fstype: "{{ item.value.fstype }}"
+    state: "{{ item.value.state | default('mounted') }}"
+    opts: "{{ item.value.opts | default(['defaults']) | join(',') }}"
+  loop: "{{ simple_mounts | ansible.builtin.dict2items }}"
+  loop_control:
+    label: "{{ item.value.src }} -> {{ item.key }} ({{ item.value.fstype }})"
+
+- name: Make sure RH insights is installed
+  ansible.builtin.package:
+    name: insights-client
+    state: present
+
+- name: Subscribe system RHN
+  community.general.redhat_subscription:
+    state: present
+    activationkey: "{{ simple_rhn_activation_key }}"
+    org_id: "{{ simple_rhn_org_id }}"
+  when:
+    - simple_rhn_org_id is defined
+    - simple_rhn_activation_key is defined
+
+- name: Configure tags for insights
+  ansible.builtin.template:
+    src: insights-tags.yaml.j2
+    dest: /etc/insights-client/tags.yaml
+    mode: "0644"
+
+- name: Register to RH insights
+  ansible.builtin.command:
+    cmd: insights-client --register
+    creates: /etc/insights-client/machine-id
+
+- name: Build node_exporter configuration
+  ansible.builtin.set_fact:
+    __node_exporter: "{{ _default_node_exporter | ansible.builtin.combine(simple_node_exporter) }}"
+
+- name: Check if node_exporter binary is present
+  ansible.builtin.stat:
+    path: "{{ __node_exporter.bin }}"
+  register: __bin
+
+- name: Download node_exporter
+  when:
+    - not __bin.stat.exists
+    - not ansible_check_mode
+  block:
+    - name: Download node_exporter tarball
+      ansible.builtin.get_url:
+        url: "https://github.com/prometheus/node_exporter/releases/download/v{{ __node_exporter.version }}/node_exporter-{{ __node_exporter.version }}.linux-amd64.tar.gz"
+        dest: /tmp/
+        force: true
+        mode: "0660"
+
+    - name: Unarchive node_exporter tarball to binary location
+      ansible.builtin.unarchive:
+        src: "/tmp/node_exporter-{{ __node_exporter.version }}.linux-amd64.tar.gz"
+        dest: "{{ __node_exporter.bin | dirname }}"
+        owner: root
+        group: root
+        mode: "0755"
+        include:
+          - "node_exporter-{{ __node_exporter.version }}.linux-amd64/node_exporter"
+        extra_opts: "--strip-components=1"
+        remote_src: true
+
+- name: Create node_exporter systemd unit file
+  ansible.builtin.template:
+    src: node_exporter.service.j2
+    dest: /etc/systemd/system/node_exporter.service
+    mode: "0660"
+
+- name: Manage node_exporter service
+  ansible.builtin.systemd_service:
+    name: node_exporter
+    state: started
+    enabled: true
+    daemon_reload: true
+  ignore_errors: "{{ ansible_check_mode }}"
+...
