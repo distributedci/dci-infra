@@ -1,0 +1,8 @@
+[Unit]
+Description=Container service network
+
+[Network]
+Subnet={{ simple_container_subnet }}
+Gateway={{ simple_container_subnet | ansible.utils.ipaddr('1') | ansible.utils.ipaddr('address') }}
+DisableDNS=false
+DNS={{ simple_container_subnet | ansible.utils.ipaddr('1') | ansible.utils.ipaddr('address') }}

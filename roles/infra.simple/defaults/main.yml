@@ -1,0 +1,22 @@
+---
+# base system
+simple_packages: []
+simple_mounts: {}
+simple_users: {}
+simple_node_exporter: {}
+
+# SSH access
+simple_ssh_access: []
+
+# firewalld
+simple_firewalld: {"ports": {}, "services": {}}
+
+# systemd services
+simple_services: {}
+
+# files
+simple_files: {}
+
+# containers
+simple_container_subnet: 192.168.100.0/24
+simple_container_quadlets: {}
