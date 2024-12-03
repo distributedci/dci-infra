@@ -16,6 +16,91 @@
       "message": "Farid PTAL",
       "revId": "84ee42c6d29d219cc3c64591124fcf7f06b836a4",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "619583a8_204b7402",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 642
+      },
+      "writtenOn": "2024-12-03T14:22:38Z",
+      "side": 1,
+      "message": "Nice @Jorge. I just put some comments. I didn\u0027t try it yet.",
+      "revId": "84ee42c6d29d219cc3c64591124fcf7f06b836a4",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "525b81fd_f49e167b",
+        "filename": "roles/infra.simple/meta/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 642
+      },
+      "writtenOn": "2024-12-03T14:22:38Z",
+      "side": 1,
+      "message": "Missing the information about the role here",
+      "revId": "84ee42c6d29d219cc3c64591124fcf7f06b836a4",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb3ac92b_97d7ad11",
+        "filename": "roles/infra.simple/tasks/base.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 642
+      },
+      "writtenOn": "2024-12-03T14:22:38Z",
+      "side": 1,
+      "message": "The archive should be removed after.",
+      "revId": "84ee42c6d29d219cc3c64591124fcf7f06b836a4",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3ef1a7e_bc545014",
+        "filename": "roles/infra.simple/tasks/users.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 642
+      },
+      "writtenOn": "2024-12-03T14:22:38Z",
+      "side": 1,
+      "message": "typo here and following on default",
+      "revId": "84ee42c6d29d219cc3c64591124fcf7f06b836a4",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d7d7125_c67a707f",
+        "filename": "roles/infra.simple/templates/node_exporter.service.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 642
+      },
+      "writtenOn": "2024-12-03T14:22:38Z",
+      "side": 1,
+      "message": "We should use only the ip needed instead of using 0.0.0.0",
+      "revId": "84ee42c6d29d219cc3c64591124fcf7f06b836a4",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
