@@ -69,6 +69,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a903561_91e120d6",
+        "filename": "roles/infra.simple/tasks/base.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2024-12-09T23:34:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb3ac92b_97d7ad11",
+      "revId": "84ee42c6d29d219cc3c64591124fcf7f06b836a4",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3ef1a7e_bc545014",
@@ -86,6 +104,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f8a1528_f01e525e",
+        "filename": "roles/infra.simple/tasks/users.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2024-12-09T23:34:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3ef1a7e_bc545014",
+      "revId": "84ee42c6d29d219cc3c64591124fcf7f06b836a4",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d7d7125_c67a707f",
@@ -99,6 +135,24 @@
       "writtenOn": "2024-12-03T14:22:38Z",
       "side": 1,
       "message": "We should use only the ip needed instead of using 0.0.0.0",
+      "revId": "84ee42c6d29d219cc3c64591124fcf7f06b836a4",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66ac331d_80264493",
+        "filename": "roles/infra.simple/templates/node_exporter.service.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2024-12-09T23:34:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d7d7125_c67a707f",
       "revId": "84ee42c6d29d219cc3c64591124fcf7f06b836a4",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
