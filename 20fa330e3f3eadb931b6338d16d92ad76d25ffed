@@ -16,6 +16,24 @@
       "message": "3 notes:\n- I\u0027d like to keep the inventory in a separate repository (dci-infra-data-prod, etc. …) ideally in the same repo as the current ones (dci-infra-data-*) even if it requires to create subdirectories to separate them\n\n- YAML format for the inventory is fine but I\u0027d prefer to have separate files for each group, host, etc. … After some time it becomes unmanageable to have every group/host in the same file\n\n- Ideally we would use the same inventory source for both legacy and new playbook, maybe just filtering with some tag (current playbook/inventory uses \"dci_*\" tags to map to roles, we could have new tags for the new playbook/inventory assignment.\n\nLooks good to me else.",
       "revId": "20fa330e3f3eadb931b6338d16d92ad76d25ffed",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "706a7ecd_3f140201",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2024-12-10T22:18:00Z",
+      "side": 1,
+      "message": "* Moved to dci-infra-data-prod in an AWS subdirectory\n* Split the inventory into regular group/host vars directories\n* The only difference I am making in the new dynamic inventory is the way the ansible_host is constructed, I am building the hostname based on the required AWS tags from IT",
+      "parentUuid": "8a65e035_61806d93",
+      "revId": "20fa330e3f3eadb931b6338d16d92ad76d25ffed",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
