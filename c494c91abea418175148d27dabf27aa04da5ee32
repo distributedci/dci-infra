@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83d9f6f9_7be280ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2024-12-12T16:31:42Z",
+      "side": 1,
+      "message": "Just one nitpick, \"aws.yml\" might be better named \"monitoring.yml\" (since everything is in AWS ^_^)",
+      "revId": "c494c91abea418175148d27dabf27aa04da5ee32",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
