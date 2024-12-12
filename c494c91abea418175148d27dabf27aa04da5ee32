@@ -33,6 +33,24 @@
       "message": "Also have a look at the \"common\" role, I think we may need to apply it to the infra machine also.",
       "revId": "c494c91abea418175148d27dabf27aa04da5ee32",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcaf7116_bd1306c5",
+        "filename": "aws.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2024-12-12T20:19:35Z",
+      "side": 1,
+      "message": "I took a look at the common role, but I think most of the things there no longer apply:\n* Firewalld configuration is already done in infra.simple\n* Internal IT CA no longer works, the domain password.corp.redhat.com no longer exists\n* Most of the things are for RHEL8 e.g. EPEL, RDO repos, python2 stuff. I think most of these we don\u0027t want / no longer need since the plan is to keep most of the stuff in containers\n* DNF Automatic is installed, then disabled\n\nI think the missing piece is installing dci-sshpubkeys and SELinux config, I can add that to infra.simple",
+      "parentUuid": "0c95d7a2_1efcaec5",
+      "revId": "c494c91abea418175148d27dabf27aa04da5ee32",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
