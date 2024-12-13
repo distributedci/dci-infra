@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36797630_8d1547f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2024-12-13T16:28:34Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "43f30de5a62ed77f104ab21eb1b3a3ea1428e387",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9084b462_b8683841",
+        "filename": "playbook.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2024-12-13T16:28:34Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "43f30de5a62ed77f104ab21eb1b3a3ea1428e387",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99aa4fbc_9c4511c2",
+        "filename": "playbook.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2024-12-13T16:28:34Z",
+      "side": 1,
+      "message": "lgtm",
+      "range": {
+        "startLine": 73,
+        "startChar": 1,
+        "endLine": 73,
+        "endChar": 20
+      },
+      "revId": "43f30de5a62ed77f104ab21eb1b3a3ea1428e387",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
