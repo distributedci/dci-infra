@@ -15,33 +15,52 @@
 # under the License.
 ---
 - name: Install firewalld and python firewalld bindings
-  package:
+  ansible.builtin.package:
     name:
       - firewalld
       - python3-firewall
 
 - name: Enable firewalld
-  service:
+  ansible.builtin.service:
     name: firewalld
     state: started
     enabled: true
 
 - name: Create firewalld zone for monitoring
-  firewalld:
+  ansible.posix.firewalld:
     zone: prometheus
     state: present
     permanent: true
   register: firewalld_zone_monitoring_result
 
-- name: Reload firewalld if the monitoring zone was created
-  command:
+- name: Reload firewalld if the monitoring zone was created  # noqa: no-changed-when no-handler
+  ansible.builtin.command:
     cmd: firewall-cmd --reload
-  when: firewalld_zone_monitoring_result.changed|default(false)
+  when: firewalld_zone_monitoring_result.changed | bool
 
-- name: Set the source for the monitoring zone
-  firewalld:
-    source: "{{ monitoring_ip_address|default('127.0.0.1') }}"
+# TODO: remove next 2 tasks once openstack monitoring VM goes away
+- name: Read local facts from monitoring instance
+  ansible.builtin.setup:
+    gather_subset: local
+  delegate_to: monitoring
+  delegate_facts: true
+  when: hostvars.monitoring.ansible_local is not defined
+
+- name: Set initial monitoring_ip_addresses value
+  ansible.builtin.set_fact:
+    monitoring_ip_addresses:
+      - "{{ hostvars.monitoring.ansible_local.public_ipv4 }}"
+
+- name: Append other monitoring AWS instances to list
+  ansible.builtin.set_fact:
+    monitoring_ip_addresses: "{{ monitoring_ip_addresses | default([]) + [hostvars[item].ansible_host] }}"
+  loop: "{{ groups.dci_prometheus | list }}"
+
+- name: Set the source for the monitoring hosts
+  ansible.posix.firewalld:
+    source: "{{ item }}"
     zone: prometheus
     state: enabled
     permanent: true
     immediate: true
+  loop: "{{ monitoring_ip_addresses }}"
