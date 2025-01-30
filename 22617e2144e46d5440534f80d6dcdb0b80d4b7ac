@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57d6a532_696870e4",
+        "filename": "roles/common/tasks/firewalld.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-01-30T10:53:21Z",
+      "side": 1,
+      "message": "Can\u0027t this be kept inside the inventory in `group_vars/all/common` ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "22617e2144e46d5440534f80d6dcdb0b80d4b7ac",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
