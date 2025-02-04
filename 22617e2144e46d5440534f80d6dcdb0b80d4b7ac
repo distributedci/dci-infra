@@ -22,6 +22,30 @@
       },
       "revId": "22617e2144e46d5440534f80d6dcdb0b80d4b7ac",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14a22036_fefd53c0",
+        "filename": "roles/common/tasks/firewalld.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-02-04T16:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57d6a532_696870e4",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "22617e2144e46d5440534f80d6dcdb0b80d4b7ac",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
