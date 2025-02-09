@@ -1,21 +1,60 @@
 ---
-- name: Manage firewalld services
+- name: Install python firewalld bindings
+  ansible.builtin.package:
+    name:
+      - python3-firewall
+
+- name: Enable firewalld
+  ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: Create monitoring firewalld zone
+  ansible.posix.firewalld:
+    zone: "{{ simple_firewalld_monitoring_zone }}"
+    state: present
+    permanent: true
+  register: _zone_result
+
+- name: Reload firewalld if monitoring zone was created  # noqa: no-changed-when no-handler
+  ansible.builtin.command:
+    cmd: firewall-cmd --reload
+  when:
+    - _zone_result.changed | bool
+    - not ansible_check_mode
+
+- name: Set source for monitoring hosts  # noqa: ignore-errors
+  ansible.posix.firewalld:
+    source: "{{ item }}"
+    zone: "{{ simple_firewalld_monitoring_zone }}"
+    state: enabled
+    permanent: true
+    immediate: true
+  loop: "{{ simple_firewalld_monitoring_ips }}"
+  ignore_errors: "{{ ansible_check_mode | bool }}"
+
+- name: Manage firewalld services  # noqa: ignore-errors
   ansible.posix.firewalld:
     service: "{{ item.key }}"
     state: "{{ item.value.state | default('enabled') }}"
+    zone: "{{ item.value.zone | default(omit) }}"
     permanent: "{{ item.value.permanent | default(true) }}"
     immediate: "{{ item.value.immediate | default(true) }}"
-  loop: "{{ simple_firewalld_services | ansible.builtin.dict2items }}"
+  loop: "{{ simple_global_firewalld_services | ansible.builtin.combine(simple_group_firewalld_services) | ansible.builtin.combine(simple_firewalld_services) | ansible.builtin.dict2items }}"
   loop_control:
     label: "{{ item.key }}"
+  ignore_errors: "{{ ansible_check_mode | bool }}"
 
-- name: Manage firewalld ports
+- name: Manage firewalld ports  # noqa: ignore-errors
   ansible.posix.firewalld:
     port: "{{ item.key }}"
     state: "{{ item.value.state | default('enabled') }}"
+    zone: "{{ item.value.zone | default(omit) }}"
     permanent: "{{ item.value.permanent | default(true) }}"
     immediate: "{{ item.value.immediate | default(true) }}"
-  loop: "{{ simple_firewalld_ports | ansible.builtin.dict2items }}"
+  loop: "{{ simple_global_firewalld_ports | ansible.builtin.combine(simple_group_firewalld_ports) | ansible.builtin.combine(simple_firewalld_ports) | ansible.builtin.dict2items }}"
   loop_control:
     label: "{{ item.key }}"
+  ignore_errors: "{{ ansible_check_mode | bool }}"
 ...
