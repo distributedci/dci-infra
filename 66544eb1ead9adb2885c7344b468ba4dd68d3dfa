@@ -16,6 +16,46 @@
       "message": "no idea why FC wasn\u0027t automatically added as reviewer 😮",
       "revId": "66544eb1ead9adb2885c7344b468ba4dd68d3dfa",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aa68a89_a78633cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-02-11T14:10:13Z",
+      "side": 1,
+      "message": "-1 just to have your opinion on using a fully generic way to handle zones + ports + services",
+      "revId": "66544eb1ead9adb2885c7344b468ba4dd68d3dfa",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a72efe7_8f411609",
+        "filename": "roles/infra.simple/defaults/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-02-11T14:10:13Z",
+      "side": 1,
+      "message": "Do you think it could be worth making this generic using a structure e.g.:\n\n```\nsimple_firewalld_zones:\n  - name: default\n      …\n  - name: prometheus\n    source_addresses:\n      - 127.0.0.1\n      - 1.2.3.4\n    ports:\n      - 1234/tcp\n      - 5678/udp\n    services:\n      - snmp\n```",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 13
+      },
+      "revId": "66544eb1ead9adb2885c7344b468ba4dd68d3dfa",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
