@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab8b81a7_70d9da5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-02-19T11:46:58Z",
+      "side": 1,
+      "message": "Comments inline regarding files.yml.\n\nAbout aws.yml, I think a 2nd review for data is required ?\n\nAlso, I would\u0027ve expected to see the files/containers/users/… definition inside this playbook but I don\u0027t see them (are they in another review ?)\n\nI think we also need to differentiate tasks according to their use:\n- operations we want to apply indifferently on all hosts\n  - e.g. ssh setup, podman setup, hostname setup, selinux setup, firewalld setup, global firewalld rules, …\n- operations that will require some different parameters depending on host group\n  - e.g. containers, files, firewall rules, selinuxrules associated to a specific service",
+      "revId": "28da4deca3d0bce4cb2a500e1c7d9e1424d0276e",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60dc5564_d0e2ed13",
+        "filename": "roles/infra.simple/tasks/files.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-02-19T11:46:58Z",
+      "side": 1,
+      "message": "Since we\u0027re moving to declaring files \u0026 templates in the playbook/plays/tasks/roles, I\u0027m not sure we\u0027ll need to store templates in the inventory.\n\nI\u0027m not against the feature, however since I\u0027ll most lileky want to be able to reuse the same files/templates across {prod,ci,whatever}, we need a way to lookup files and templates from the playbook/task/role directories.\n\nSince the default ansible configuration [1] will end up looking for templates \u0026 files in the current task or playbook directory, I\u0027d like to replicate this feature by either adding at least a third path `{{ playbook_dir}}/templates` or discard  the lookup that you added.\n\nLet\u0027s talk about the use-cases tomorrow to decide which way to go.\n\nThe main question I\u0027d like an answer to is:\n   DO WE NEED TO BE ABLE TO SET DIFFERENT FILE/TEMPLATE CONTENT FOR DIFFERENT HOSTS IN THE INVENTORY OR IS USING TEMPLATING AND/OR VARIABLES SUFFICIENT TO DIFFERENTIATE FILES DEPENDING ON THE TARGET PLATFORM ?\n\n\n[1] https://docs.ansible.com/ansible/latest/playbook_guide/playbook_pathing.html",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 43
+      },
+      "revId": "28da4deca3d0bce4cb2a500e1c7d9e1424d0276e",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00c9cc79_cd9ed750",
+        "filename": "roles/infra.simple/tasks/files.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-02-19T11:46:58Z",
+      "side": 1,
+      "message": "same here but with `{{ playbook_dir }}/files`",
+      "revId": "28da4deca3d0bce4cb2a500e1c7d9e1424d0276e",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
