@@ -1,7 +1,75 @@
 ---
-- hosts: dci_ng
+- name: Base setup for AWS infra
+  hosts: dci_ng
   gather_facts: true
   become: true
-  roles:
-    - infra.simple
+
+  tasks:
+    - name: SELinux tasks
+      ansible.builtin.include_role:
+        name: infra.simple
+        tasks_from: selinux.yml
+      tags:
+        - base
+        - selinux
+
+    - name: Base OS tasks
+      ansible.builtin.include_role:
+        name: infra.simple
+        tasks_from: base.yml
+      tags:
+        - base
+
+    - name: User/group base tasks
+      ansible.builtin.include_role:
+        name: infra.simple
+        tasks_from: users.yml
+      tags:
+        - base
+        - users
+        - groups
+
+    - name: Package base tasks
+      ansible.builtin.include_role:
+        name: infra.simple
+        tasks_from: packages.yml
+      tags:
+        - base
+        - packages
+
+    - name: DCI base tasks
+      ansible.builtin.include_role:
+        name: infra.simple
+        tasks_from: dci.yml
+      tags:
+        - base
+        - dci
+
+    - name: SSH base tasks
+      ansible.builtin.include_role:
+        name: infra.simple
+        tasks_from: ssh.yml
+      tags:
+        - base
+        - ssh
+
+    - name: Files/directories base tasks
+      ansible.builtin.include_role:
+        name: infra.simple
+        tasks_from: files.yml
+        apply:
+          tags:
+            - base
+            - files
+      tags:
+        - base
+        - files
+
+    - name: Firewall base tasks
+      ansible.builtin.include_role:
+        name: infra.simple
+        tasks_from: firewall.yml
+      tags:
+        - base
+        - firewall
 ...
