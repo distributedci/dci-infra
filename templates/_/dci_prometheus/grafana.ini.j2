@@ -1,0 +1,43 @@
+# vim: filetype=ini
+app_mode = production
+instance_name = {{ ansible_fqdn }}
+
+[paths]
+data = /var/lib/grafana
+
+[server]
+protocol = http
+http_port = {{ grafana_http_port }}
+domain = {{ ansible_fqdn }}
+root_url = %(protocol)s://%(domain)s{{ grafana_web_path }}
+serve_from_sub_path = true
+
+[database]
+type = sqlite3
+path = grafana.db
+
+[auth]
+disable_login_form = true
+
+[auth.basic]
+enabled = false
+
+[auth.gitlab]
+name = Gitlab CEE
+enabled = true
+allow_sign_up = true
+auto_login = false
+client_id = {{ grafana_oauth2_application_id }}
+client_secret = {{ grafana_oauth2_application_secret }}
+scopes = openid email profile
+auth_url = https://gitlab.cee.redhat.com/oauth/authorize
+token_url = https://gitlab.cee.redhat.com/oauth/token
+api_url = https://gitlab.cee.redhat.com/api/v4
+role_attribute_path = contains(groups[*], 'rhdl') && 'GrafanaAdmin' || 'Viewer'
+role_attribute_strict = false
+allow_assign_grafana_admin = true
+allowed_groups = ["dci"]
+; TODO: figure out how to import and auto refresh redhat's internal CA
+tls_skip_verify_insecure = true
+use_pkce = true
+use_refresh_token = true

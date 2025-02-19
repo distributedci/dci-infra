@@ -1,11 +1,4 @@
 ---
-- name: Ensure podman packages are present
-  ansible.builtin.package:
-    name:
-      - podman
-      - podman-plugins
-    state: present
-
 - name: Create quadlet subnet configuration
   vars:
     __subnet: "{{ simple_quadlet_subnet }}"

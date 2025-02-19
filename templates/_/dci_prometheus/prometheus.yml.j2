@@ -1,0 +1,117 @@
+# vim: tabstop=2 shiftwidth=2 expandtab
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+
+  external_labels:
+    environment: {{ ansible_fqdn }}
+
+scrape_configs:
+  - job_name: prometheus
+    metrics_path: {{ prometheus_web_path }}/metrics
+    static_configs:
+      - targets:
+        - {{ ansible_fqdn }}:{{ prometheus_http_port }}
+
+  - job_name: blackbox_2xx_ssl
+    metrics_path: /probe
+    params:
+      module: [http_2xx_ssl]
+    static_configs:
+      - targets:
+        - www.distributed-ci.io
+        - api.distributed-ci.io/api/v1
+        - packages.distributed-ci.io
+        - docs.distributed-ci.io
+        - blog.distributed-ci.io
+    relabel_configs:
+      - regex: (.*)
+        replacement: https://${1}
+        source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - replacement: blackbox:{{ blackbox_http_port }}
+        target_label: __address__
+
+  - job_name: blackbox_401_ssl
+    metrics_path: /probe
+    params:
+      module: [http_401_ssl]
+    static_configs:
+      - targets:
+        - registry.distributed-ci.io
+        - api.distributed-ci.io/api/v1/users/me
+    relabel_configs:
+      - regex: (.*)
+        replacement: https://${1}
+        source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - replacement: blackbox:{{ blackbox_http_port }}
+        target_label: __address__
+
+  - job_name: domain
+    metrics_path: /probe
+    scrape_interval: 15m
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - replacement: domain-exporter:{{ domain_exporter_http_port }}
+        target_label: __address__
+    static_configs:
+      - targets:
+        - distributed-ci.io
+
+  - job_name: node
+    ec2_sd_configs:
+      - region: us-east-1
+        port: {{ node_exporter_port }}
+        filters:
+          - name: tag:env
+            values:
+              - prod
+          - name: tag:app
+            values:
+              - dci
+    relabel_configs:
+      - source_labels: [__meta_ec2_private_ip]
+        replacement: '$1:{{ node_exporter_port }}'
+        target_label: __address__
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instance
+      - source_labels: [__meta_ec2_tag_env]
+        target_label: environment
+
+  - job_name: podman
+    ec2_sd_configs:
+      - region: us-east-1
+        port: {{ podman_exporter_port }}
+        filters:
+          - name: tag:env
+            values:
+              - prod
+          - name: tag:app
+            values:
+              - dci
+    relabel_configs:
+      - source_labels: [__meta_ec2_private_ip]
+        replacement: '$1:{{ podman_exporter_port }}'
+        target_label: __address__
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instance
+      - source_labels: [__meta_ec2_tag_env]
+        target_label: environment
+
+rule_files:
+  - /etc/prometheus/rules.d/*.rules
+
+alerting:
+  alertmanagers:
+    - path_prefix: {{ alertmanager_web_path }}
+      scheme: http
+      static_configs:
+      - targets:
+        - alertmanager:{{ alertmanager_http_port }}

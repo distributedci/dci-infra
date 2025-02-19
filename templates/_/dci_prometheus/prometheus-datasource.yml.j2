@@ -1,0 +1,17 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:{{ prometheus_http_port }}{{ prometheus_web_path }}
+    jsonData:
+      httpMethod: POST
+      manageAlerts: true
+      prometheusType: Prometheus
+      prometheusVersion: {{ prometheus_version }}
+      cacheLevel: 'High'
+      disableRecordingRules: false
+      incrementalQueryOverlapWindow: 10m
+
+# vim: tabstop=2 shiftwidth=2 expandtab
