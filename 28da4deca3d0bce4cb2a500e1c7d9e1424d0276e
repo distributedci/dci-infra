@@ -18,6 +18,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5401fc6d_8bd30037",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-02-28T16:09:48Z",
+      "side": 1,
+      "message": "(EDIT) I found the 2nd review for the templates.\n\nBut I still think we need to move out all files, containers, services declatations etc … out from the inventory directory to be able to reuse them in different environments.",
+      "parentUuid": "ab8b81a7_70d9da5e",
+      "revId": "28da4deca3d0bce4cb2a500e1c7d9e1424d0276e",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60dc5564_d0e2ed13",
