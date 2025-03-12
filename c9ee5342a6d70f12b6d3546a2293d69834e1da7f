@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "136830d4_0c636d43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-12T21:55:56Z",
+      "side": 1,
+      "message": "Good stuff, I started from the bottom up so my observations for dci-ui would also apply to dci-doc, sorry if I was too verbose!",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf6c63c1_dab050be",
+        "filename": "roles/quadlet.dci_ui/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-12T21:55:56Z",
+      "side": 1,
+      "message": "\u003c3",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ab1d655_7e78e236",
+        "filename": "roles/quadlet.dci_ui/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-12T21:55:56Z",
+      "side": 1,
+      "message": "I can see over-scaling is handled, but not initial setup or when `_container_units_found \u003c dci_ui_container_scale`. I think you can do both more generic:\n1. Loop over `dci_ui_container_scale` and create files with `state: link` and start service (with `daemon-reload: true`)\n2. Loop over `_container_units_found` and remove files with `state: absent` when it\u0027s \u003e `dci_ui_container_scale` then stop service with `daemon-reload: true`\n\nYou don\u0027t need an extra daemon-reload at the end as you are reloading as you go.\nAlso a note: in reality you don\u0027t need to create symlinks at all, but I understand it works here to know when to scale down",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06932fac_3c4adb28",
+        "filename": "roles/quadlet.dci_ui/templates/haproxy_backend.conf.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-12T21:55:56Z",
+      "side": 1,
+      "message": "You could add a `option httpchk GET /healthz` (or whatever 0 byte static file path you can create) because that way you can easily take backend servers out of a pool by removing that file and waiting for the requests to drain. We don\u0027t have enough web requests to care about that so probably doesn\u0027t matter",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06c3e453_a732550b",
+        "filename": "roles/quadlet.haproxy/defaults/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-12T21:55:56Z",
+      "side": 1,
+      "message": "If you mount the letsencrypt dir 1 level higher you will make it more flexible e.g. `/etc/letsencrypt/live:/etc/ssl/letsencrypt:ro,z`",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0591df20_cd0e2d5c",
+        "filename": "roles/quadlet.haproxy/handlers/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-12T21:55:56Z",
+      "side": 1,
+      "message": "Suggestion: I think if you add\n\n```\n[Service]\nExecReload\u003dpodman kill --signal HUP %N\n```\n\nto the global quadlet template you\u0027ll get a nicer implementation with `state: reloaded`",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20feca7e_2cba4f6f",
+        "filename": "roles/quadlet.haproxy/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-12T21:55:56Z",
+      "side": 1,
+      "message": "I see haproxy_global handled, but don\u0027t see haproxy_dci template rendered anywhere, you could also do it more \"dynamic\" with something like what is done in the quadlet.nginx location configuration, just a list of config fragments that will be rendered",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed89d43c_42e85bed",
+        "filename": "roles/quadlet.haproxy/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-12T21:55:56Z",
+      "side": 1,
+      "message": "`with_*` is discouraged by ansible now, use `loop` instead",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e888e2_c8dbdda1",
+        "filename": "templates/global.container.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-12T21:55:56Z",
+      "side": 1,
+      "message": "if you drop the `-` and leave only `%i` you won\u0027t need this condition because `%i` is empty for non-instantiated services. If you do want to keep the `-` for readability then a cleaner template would be `{{ \u0027-%i\u0027 if _config.scale is defined else \u0027\u0027 }}`",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb5c633_ffa8cb86",
+        "filename": "templates/global.container.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-12T21:55:56Z",
+      "side": 1,
+      "message": "same comment as `ContainerName`",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
