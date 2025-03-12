@@ -1,0 +1,16 @@
+---
+- name: Restart haproxy
+  ansible.builtin.systemd:
+    name: haproxy.service
+    state: restarted
+    daemon-reload: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Reload haproxy
+  ansible.builtin.shell:
+    cmd: podman exec haproxy -f {{ haproxy_config_dir }} -c && podman kill --signal HUP haproxy
+  ignore_errors: "{{ ansible_check_mode }}"
+  register: _haproxy_test_and_reload
+  failed_when: _haproxy_test_and_reload.rc != 0
+  changed_when: _haproxy_test_and_reload.rc == 0
+...
