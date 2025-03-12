@@ -1,0 +1,75 @@
+---
+- name: Get count of configured containers
+  vars:
+    _quadlet: dci-doc
+  ansible.builtin.find:
+    paths: /etc/containers/systemd/
+    patterns: "{{ _quadlet }}@*.container"
+    file_type: link
+  register: _container_units_found
+
+- name: Handle over-scale containers
+  vars:
+    _quadlet: dci-doc
+  when: _container_units_found.matched > dci_doc_container_scale
+  block:
+    - name: Stop services over scale
+      ansible.builtin.systemd:
+        name: "{{ _quadlet }}@{{ item }}.service"
+        state: stopped
+      ignore_errors: "{{ ansible_check_mode }}"
+      loop: "{{ range(dci_doc_container_scale, _container_units_found.matched) | list }}"
+
+    - name: Remove unit files over scale
+      ansible.builtin.file:
+        dest: /etc/containers/systemd/{{ _quadlet }}@{{ item }}.quadlet
+        state: absent
+      loop: "{{ range(dci_doc_container_scale, _container_units_found.matched) | list }}"
+
+    - name: Reload systemd
+      ansible.builtin.systemd:
+        daemon-reload: true
+
+- name: Create the containers
+  vars:
+    _quadlet: dci-doc
+    _config: "{{ dci_doc_container_spec }}"
+  block:
+    - name: Pull image
+      containers.podman.podman_image:
+        name: "{{ _config.image }}"
+      notify:
+        - Restart dci-doc
+
+    - name: Create container quadlet
+      ansible.builtin.template:
+        src: "global.container.j2"
+        dest: "/etc/containers/systemd/{{ _quadlet }}@.container"
+        mode: '0640'
+      notify:
+        - Restart dci-doc
+
+    - name: Ensure service is started
+      ansible.builtin.systemd:
+        name: "{{ _quadlet }}@{{ item }}.service"
+        state: started
+        daemon-reload: true
+      ignore_errors: "{{ ansible_check_mode }}"
+      loop: "{{ range(0, _config.scale) | list }}"
+
+- name: Handle HAProxy conf
+  block:
+    - name: Load HAProxy role handlers
+      ansible.builtin.import_role:
+        name: quadlet.haproxy
+        tasks_from: noop
+        handlers_from: main
+
+    - name: Render the HAproxy backend
+      ansible.builtin.template:
+        src: haproxy_backend.conf.j2
+        dest: /etc/haproxy/backend-dci-doc.conf
+        mode: '0640'
+      notify:
+        - Reload haproxy
+...
