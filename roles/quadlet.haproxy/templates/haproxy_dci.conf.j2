@@ -1,0 +1,46 @@
+frontend dci-in
+{% if ssl_enable | default(false) | bool -%}
+  bind *:443 ssl crt /etc/ssl/distributed-ci.io/fullchain-key.crt alpn h2,http/1.1
+  http-request redirect scheme https unless { ssl_fc }
+{%- endif %}
+  bind *:80
+
+  option httpslog
+
+  ## Default route: ui
+  #default_backend ui
+  ## If URL starts with '/api/': dci-control-server
+  #use_backend api if { path_dir -i /api/ }
+  ## Another example: route to minio if 'host' header starts with "minio"
+  #use_backend minio if { req.hdr(host) -i minio }
+
+{% if  %}
+  use_backend dci-doc if { req.hdr(host) -m dom doc.distributed-ci.io docs.distributed-ci.io }
+{% endif %}
+{% if  %}
+  use backend dci-api if { req.hdr(host) -m dom api.distributed-ci.io }
+{% endif %}
+{% if  %}
+  use backend dci-ui if { req.hdr(host) -m dom distributed-ci.io www.distributed-ci.io }
+{% endif %}
+
+#backend dci-api
+#  # conf is ready for up to 10 backends
+#  server api0 dci_api_0:5000 check
+#  server api1 dci_api_1:5000 check
+#  server api2 dci_api_2:5000 check
+#  server api3 dci_api_3:5000 check
+#  server api4 dci_api_4:5000 check
+#  server api5 dci_api_5:5000 check
+#  server api6 dci_api_6:5000 check
+#  server api7 dci_api_7:5000 check
+#  server api8 dci_api_8:5000 check
+#  server api9 dci_api_9:5000 check
+#
+#  # Healthcheck on endpoint-specific endpoint & method
+#  option httpchk HEAD /api/v1/
+
+# TODO
+#backend dci-packages
+#  server packages0 dci-packages-0:80 check
+#  server packages1 dci-packages-1:80 check

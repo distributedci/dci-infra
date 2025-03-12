@@ -1,0 +1,13 @@
+---
+- name: Restart haproxy
+  ansible.builtin.systemd:
+    name: haproxy.service
+    state: restarted
+    daemon-reload: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Reload haproxy  # noqa: no-changed-when
+  ansible.builtin.command:
+    name: podman kill --signal HUP haproxy
+  ignore_errors: "{{ ansible_check_mode }}"
+...
