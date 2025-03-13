@@ -105,6 +105,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e4bf0ce_a8a590d7",
+        "filename": "roles/quadlet.haproxy/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2025-03-13T09:39:40Z",
+      "side": 1,
+      "message": "I see that your reload the HAproxy configuration sending HUP to HAProxy (it triggers a soft reload, this is good). But if the configuration is not working/not good, could we finish with more processes running?\n\nI\u0027m wondering if we could check the HAproxy config before reloading ?\n\n    haproxy -f /path/to/haproxy.cfg -c",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 27
+      },
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20feca7e_2cba4f6f",
         "filename": "roles/quadlet.haproxy/tasks/main.yml",
         "patchSetId": 2
