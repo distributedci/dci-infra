@@ -35,6 +35,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f667da98_89904335",
+        "filename": "roles/quadlet.dci_ui/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-17T17:17:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf6c63c1_dab050be",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ab1d655_7e78e236",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-03-12T21:55:56Z",
       "side": 1,
       "message": "I can see over-scaling is handled, but not initial setup or when `_container_units_found \u003c dci_ui_container_scale`. I think you can do both more generic:\n1. Loop over `dci_ui_container_scale` and create files with `state: link` and start service (with `daemon-reload: true`)\n2. Loop over `_container_units_found` and remove files with `state: absent` when it\u0027s \u003e `dci_ui_container_scale` then stop service with `daemon-reload: true`\n\nYou don\u0027t need an extra daemon-reload at the end as you are reloading as you go.\nAlso a note: in reality you don\u0027t need to create symlinks at all, but I understand it works here to know when to scale down",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d48a2a3f_8801cae2",
+        "filename": "roles/quadlet.dci_ui/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-17T17:17:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ab1d655_7e78e236",
       "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
@@ -69,6 +105,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69fbd1f8_f6744f51",
+        "filename": "roles/quadlet.dci_ui/templates/haproxy_backend.conf.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-17T17:17:22Z",
+      "side": 1,
+      "message": "This would be a good option for another iteration.",
+      "parentUuid": "06932fac_3c4adb28",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06c3e453_a732550b",
@@ -86,6 +140,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9ea1024_c5f0e73a",
+        "filename": "roles/quadlet.haproxy/defaults/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-17T17:17:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06c3e453_a732550b",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0591df20_cd0e2d5c",
@@ -99,6 +171,24 @@
       "writtenOn": "2025-03-12T21:55:56Z",
       "side": 1,
       "message": "Suggestion: I think if you add\n\n```\n[Service]\nExecReload\u003dpodman kill --signal HUP %N\n```\n\nto the global quadlet template you\u0027ll get a nicer implementation with `state: reloaded`",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10bd2bf3_17d56710",
+        "filename": "roles/quadlet.haproxy/handlers/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-17T17:17:22Z",
+      "side": 1,
+      "message": "Damn, I searched for this `ExecReload` (but apparently not in the correct manpage) 😂",
+      "parentUuid": "0591df20_cd0e2d5c",
       "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
@@ -126,6 +216,30 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa4a7c0a_ed0678f3",
+        "filename": "roles/quadlet.haproxy/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-17T17:17:22Z",
+      "side": 1,
+      "message": "I didn\u0027t find any more info on haproxy\u0027s behavior when reloading with a bad config.\n\nAdding config check in the `ExecReload\u003d` commands in the unit file.",
+      "parentUuid": "1e4bf0ce_a8a590d7",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 27
+      },
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20feca7e_2cba4f6f",
@@ -139,6 +253,24 @@
       "writtenOn": "2025-03-12T21:55:56Z",
       "side": 1,
       "message": "I see haproxy_global handled, but don\u0027t see haproxy_dci template rendered anywhere, you could also do it more \"dynamic\" with something like what is done in the quadlet.nginx location configuration, just a list of config fragments that will be rendered",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edf4f987_4636fd22",
+        "filename": "roles/quadlet.haproxy/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-17T17:17:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20feca7e_2cba4f6f",
       "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
@@ -160,6 +292,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3029f3fb_9adeb30d",
+        "filename": "roles/quadlet.haproxy/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-17T17:17:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed89d43c_42e85bed",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74e888e2_c8dbdda1",
@@ -177,6 +327,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "804c0c1b_246f5659",
+        "filename": "templates/global.container.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-17T17:17:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74e888e2_c8dbdda1",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ceb5c633_ffa8cb86",
@@ -190,6 +358,24 @@
       "writtenOn": "2025-03-12T21:55:56Z",
       "side": 1,
       "message": "same comment as `ContainerName`",
+      "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49592de8_1bed24f2",
+        "filename": "templates/global.container.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-17T17:17:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ceb5c633_ffa8cb86",
       "revId": "c9ee5342a6d70f12b6d3546a2293d69834e1da7f",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
