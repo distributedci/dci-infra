@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba6bc435_98615f78",
+        "filename": "roles/quadlet.dci_ui/tasks/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-18T17:59:37Z",
+      "side": 1,
+      "message": "ooooh I see now what noop.yml is for",
+      "revId": "24ec6c5510a234a4bfce69ca9a0fa2b4d48ae48c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3229011d_8866e0f4",
+        "filename": "roles/quadlet.haproxy/defaults/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-18T17:59:37Z",
+      "side": 1,
+      "message": "this is supposed to be a yaml list no?",
+      "revId": "24ec6c5510a234a4bfce69ca9a0fa2b4d48ae48c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4d0c865_3f546951",
+        "filename": "roles/quadlet.haproxy/handlers/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-18T17:59:37Z",
+      "side": 1,
+      "message": "replace this with an `ansible.builtin.systemd` call with `state: reloaded`",
+      "revId": "24ec6c5510a234a4bfce69ca9a0fa2b4d48ae48c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fecc0452_c2f07909",
+        "filename": "roles/quadlet.haproxy/tasks/noop.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-18T17:59:37Z",
+      "side": 1,
+      "message": "what\u0027s this file for?",
+      "revId": "24ec6c5510a234a4bfce69ca9a0fa2b4d48ae48c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
