@@ -1,0 +1,9 @@
+Code-Review+2: Jorge Gallegos <jgallego@redhat.com>
+Workflow+1: François Charlier <francois.charlier@redhat.com>
+Code-Review+2: Guillaume Vincent <gvincent@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Wed, 19 Mar 2025 09:49:57 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/dci-infra/+/33305
+Project: dci-infra
+Branch: refs/heads/master
