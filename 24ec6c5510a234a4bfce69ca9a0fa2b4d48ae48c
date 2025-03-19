@@ -18,6 +18,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa34e3a7_8dce0c29",
+        "filename": "roles/quadlet.dci_ui/tasks/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-19T09:48:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba6bc435_98615f78",
+      "revId": "24ec6c5510a234a4bfce69ca9a0fa2b4d48ae48c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3229011d_8866e0f4",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-18T17:59:37Z",
       "side": 1,
       "message": "this is supposed to be a yaml list no?",
+      "revId": "24ec6c5510a234a4bfce69ca9a0fa2b4d48ae48c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afe6b672_9a2cab8a",
+        "filename": "roles/quadlet.haproxy/defaults/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-19T09:48:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3229011d_8866e0f4",
       "revId": "24ec6c5510a234a4bfce69ca9a0fa2b4d48ae48c",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
@@ -52,6 +88,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06c54c07_abf7fc45",
+        "filename": "roles/quadlet.haproxy/handlers/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-19T09:48:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4d0c865_3f546951",
+      "revId": "24ec6c5510a234a4bfce69ca9a0fa2b4d48ae48c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fecc0452_c2f07909",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-03-18T17:59:37Z",
       "side": 1,
       "message": "what\u0027s this file for?",
+      "revId": "24ec6c5510a234a4bfce69ca9a0fa2b4d48ae48c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac8dd197_f819cd4a",
+        "filename": "roles/quadlet.haproxy/tasks/noop.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-19T09:48:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fecc0452_c2f07909",
       "revId": "24ec6c5510a234a4bfce69ca9a0fa2b4d48ae48c",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
