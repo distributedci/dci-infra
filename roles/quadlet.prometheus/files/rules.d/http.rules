@@ -10,7 +10,8 @@ groups:
     annotations:
       summary: URL endpoint is down
       description: >
-        URL endpoint {{ $labels.instance }} probing has failed for over 5 minutes
+        URL endpoint {{ $labels.instance }} probing has failed for over 5
+        minutes
 
   - alert: http_status_code_2xx
     expr: probe_http_status_code{job="blackbox_2xx_ssl"} >= 300
@@ -19,4 +20,39 @@ groups:
       severity: critical
     annotations:
       summary: URL returning != 2xx
-      description: URL endpoint {{ $labels.instance }} is returning != 2xx for over 10 minutes
+      description: >
+        URL endpoint {{ $labels.instance }} is returning != 2xx for over 10
+        minutes
+
+  - alert: haproxy_backend_active_servers
+    expr: haproxy_backend_active_servers{job="haproxy"} == 0
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: No active servers in backend
+      description: >
+        There have been no active backend servers for proxy
+        {{ $labels.proxy }} on {{ $labels.instance }}
+
+  - alert: haproxy_backend_response_errors
+    expr: increase(haproxy_backend_response_errors_total{job="haproxy"}[1m]) > 0
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: Increase in backend response errors
+      description: >
+        There has been an increase in backend response errors for
+        proxy {{ $labels.proxy }} on {{ $labels.instance }}
+
+  - alert: haproxy_frontend_request_errors
+    expr: increase(haproxy_frontend_request_errors_total{job="haproxy"}[1m]) > 0
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: Increase in frontend request errors
+      description: >
+        There has been an increase in frontend request errors for
+        proxy {{ $labels.proxy }} on {{ $labels.instance }}
