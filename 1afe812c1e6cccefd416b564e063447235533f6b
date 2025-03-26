@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d27dd05e_7e5d8040",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-26T09:18:38Z",
+      "side": 1,
+      "message": "lgtm, except the copy/paste replacement miss",
+      "revId": "1afe812c1e6cccefd416b564e063447235533f6b",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc8cc56f_6a8a351d",
+        "filename": "roles/quadlet.prometheus/files/rules.d/http.rules",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-26T09:18:38Z",
+      "side": 1,
+      "message": "5xx\n\n(there had to be one 😉 )",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 30
+      },
+      "revId": "1afe812c1e6cccefd416b564e063447235533f6b",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
