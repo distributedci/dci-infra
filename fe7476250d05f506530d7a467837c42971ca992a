@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec6428b4_55e35a99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-27T16:19:15Z",
+      "side": 1,
+      "message": "Where do all the settings in settings.py and dci-api.env come from? there are no defaults, right now you\u0027d have to define *all* of them in dci-infra-data-prod or they\u0027ll be blank/wrong when rendering the template, and the template overrides the container behavior",
+      "revId": "fe7476250d05f506530d7a467837c42971ca992a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00362af2_f2624bd7",
+        "filename": "roles/quadlet.dci_api/handlers/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-03-27T16:19:15Z",
+      "side": 1,
+      "message": "just a comment but: would it make sense to add a pause between restarts? this can be done with\n```\nloop_control:\n  pause: X\n```",
+      "revId": "fe7476250d05f506530d7a467837c42971ca992a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
