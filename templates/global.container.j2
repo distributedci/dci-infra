@@ -82,6 +82,9 @@ StartLimitInterval=0
 ExecReload={{ _command }}
 {% endfor %}
 {%- endif %}
+{% if _config.timeoutstartsec | default(false) %}
+TimeoutStartSec={{ _config.timeoutstartsec }}
+{% endif %}
 
 [Install]
 WantedBy={{ _config.wanted_by | default('multi-user.target') }}
