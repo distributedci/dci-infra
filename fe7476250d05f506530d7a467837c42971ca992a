@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "186c7432_64a2103d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-27T16:37:38Z",
+      "side": 1,
+      "message": "First, settings.py doesn\u0027t has its place here, its a leftover from a previous iteration, I removed it in patch set 2.\n\nThen:\n - if there\u0027s no \"{% if \u003cvariable_name\u003e is defined %}\", this is a variable that\u0027s already in dci-infra-data-prod.\n - if it\u0027s a new or optional variable, I added the \"{% if … is defined %}\".\n\nDo you think that I should add \"{% if \u003cvariable_name\u003e is defined %}\" for all variables in dci-api.env.j2 ?",
+      "parentUuid": "ec6428b4_55e35a99",
+      "revId": "fe7476250d05f506530d7a467837c42971ca992a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00362af2_f2624bd7",
         "filename": "roles/quadlet.dci_api/handlers/main.yml",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-27T16:19:15Z",
       "side": 1,
       "message": "just a comment but: would it make sense to add a pause between restarts? this can be done with\n```\nloop_control:\n  pause: X\n```",
+      "revId": "fe7476250d05f506530d7a467837c42971ca992a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7131e30_2e23d137",
+        "filename": "roles/quadlet.dci_api/handlers/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-27T16:37:38Z",
+      "side": 1,
+      "message": "It could be.\nLet\u0027s discuss what delay would make sense.",
+      "parentUuid": "00362af2_f2624bd7",
       "revId": "fe7476250d05f506530d7a467837c42971ca992a",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
