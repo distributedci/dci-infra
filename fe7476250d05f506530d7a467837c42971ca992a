@@ -69,6 +69,24 @@
       "parentUuid": "00362af2_f2624bd7",
       "revId": "fe7476250d05f506530d7a467837c42971ca992a",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03eff24c_9e955c51",
+        "filename": "roles/quadlet.dci_api/handlers/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-27T16:54:55Z",
+      "side": 1,
+      "message": "Okay, since gunicorn supports sd_notify, maybe we could use  Notify\u003dhealthy or Notify\u003dtrue instead of waiting randomly ?\n\ncf. https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#notify-defaults-to-false\n\nLet\u0027s set this aside for now, I\u0027ll do some tests to check what\u0027s best",
+      "parentUuid": "b7131e30_2e23d137",
+      "revId": "fe7476250d05f506530d7a467837c42971ca992a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
