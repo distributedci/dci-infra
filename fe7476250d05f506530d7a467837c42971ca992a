@@ -54,6 +54,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a62012ef_9d5cd9ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-03-28T10:16:30Z",
+      "side": 1,
+      "message": "Okay, after discussing together, I\u0027ll keep it this way for now, all variables that don\u0027t have `{% if … is defined %}` require a custom value for production and as such they need to be defined.",
+      "parentUuid": "186c7432_64a2103d",
+      "revId": "fe7476250d05f506530d7a467837c42971ca992a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00362af2_f2624bd7",
