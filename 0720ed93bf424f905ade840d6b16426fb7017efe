@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d526f4f_d87d9cc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-04-09T15:14:21Z",
+      "side": 1,
+      "message": "Waiting for refactor of https://softwarefactory-project.io/r/c/dci-config/+/33529",
+      "revId": "0720ed93bf424f905ade840d6b16426fb7017efe",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
