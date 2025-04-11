@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fb25b8e_68074902",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-04-11T22:28:34Z",
+      "side": 1,
+      "message": "AWS objects are already created, but I wanted to leave all of this somewhere permanent",
+      "revId": "7629a5e2fd2b66942c942bd2ef192304b0d4a5e3",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
