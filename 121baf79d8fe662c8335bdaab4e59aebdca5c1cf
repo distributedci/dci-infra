@@ -18,6 +18,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ef515aa_3b7fad28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-04-14T14:57:06Z",
+      "side": 1,
+      "message": "Yes, you\u0027re right. https://softwarefactory-project.io/r/c/dci-infra-data-prod/+/33552",
+      "parentUuid": "cb939c33_2c61e100",
+      "revId": "121baf79d8fe662c8335bdaab4e59aebdca5c1cf",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72d3cbd6_92aee5ba",
