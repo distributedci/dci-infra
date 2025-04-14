@@ -18,6 +18,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "27ff342d_2150e36a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-04-14T15:50:26Z",
+      "side": 1,
+      "message": "I already created a group `dci-developers` with EC2FullAccess, S3FullAccess, SNSFullAccess and SQSFullAccess. Do you think I can add it to that group or would you rather have only SNS and SQS policies attached directly to the `dci-infra` user?",
+      "parentUuid": "44b24d22_abc0d872",
+      "revId": "7629a5e2fd2b66942c942bd2ef192304b0d4a5e3",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "3fb25b8e_68074902",
