@@ -36,6 +36,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b03f03cc_f3b8c6e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-04-14T16:00:22Z",
+      "side": 1,
+      "message": "If it\u0027s not too complicated, I\u0027d prefer that each user/token has only access to the minimum set of resources required.",
+      "parentUuid": "27ff342d_2150e36a",
+      "revId": "7629a5e2fd2b66942c942bd2ef192304b0d4a5e3",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "3fb25b8e_68074902",
