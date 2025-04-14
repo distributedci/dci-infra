@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "44b24d22_abc0d872",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-04-14T09:37:04Z",
+      "side": 1,
+      "message": "The deploy host uses a key owned by the `dci-infra` user.\n\nThis key only has the policy `\"Action\": \"ec2:DescribeInstances\",` attached.\n\nIt would need to be attached another policy to be allowed manage other resources.",
+      "revId": "7629a5e2fd2b66942c942bd2ef192304b0d4a5e3",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "3fb25b8e_68074902",
@@ -14,6 +31,23 @@
       "writtenOn": "2025-04-11T22:28:34Z",
       "side": 1,
       "message": "AWS objects are already created, but I wanted to leave all of this somewhere permanent",
+      "revId": "7629a5e2fd2b66942c942bd2ef192304b0d4a5e3",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e252301f_f1381ba7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-04-14T09:37:04Z",
+      "side": 1,
+      "message": "lgtm.\n\nHowever, the `dci-infra` acess key would need to be attached to policies to allow management of SQS/SNS resources \u0026 access to the S3 bucket.",
       "revId": "7629a5e2fd2b66942c942bd2ef192304b0d4a5e3",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
