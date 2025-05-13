@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a42c3ae8_196ee493",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-05-13T14:36:08Z",
+      "side": 1,
+      "message": "I thought these were defined as tags in AWS",
+      "revId": "7ae900bdc67ffb10fa2e14cef13b30ac92937748",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
