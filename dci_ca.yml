@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  vars:
+    dci_certificate_authority_passphrase: toto
+    dci_certificate_authority_servercerts:
+      - name: db.distributed-ci.io
+        sans:
+          - "DNS:db.distributed-ci.io"
+          - "DNS:localhost"
+          - "IP:192.168.254.13"
+          - "IP:127.0.0.1"
+      - name: test.distributed-ci.io
+        sans:
+          - "DNS:test.distributed-ci.io"
+          - "DNS:localhost"
+          - "IP:10.0.0.13"
+          - "IP:127.0.0.1"
+
+  tasks:
+    - name: Create Certificate Authority
+      include_role:
+        name: dci_certificate_authority
