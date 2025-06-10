@@ -1,0 +1,93 @@
+---
+- name: Generate DH Parameters (2048 bits)
+  community.crypto.openssl_dhparam:
+    path: "{{ postgresql_ca_dir }}/dhparams.pem"
+    size: 2048
+    owner: root
+    group: root
+    mode: "0600"
+
+- name: Create a directory to store the CA data
+  ansible.builtin.file:
+    path: "{{ postgresql_ca_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0700'
+
+# Generate CA cert
+- name: Create private key with password protection
+  community.crypto.openssl_privatekey:
+    path: "{{ postgresql_ca_dir }}/ca-certificate.key"
+    passphrase: "{{ postgresql_ca_passphrase }}"
+
+- name: Create certificate signing request (CSR) for CA certificate
+  community.crypto.openssl_csr:
+    path: "{{ postgresql_ca_dir }}/ca-certificate.csr"
+    privatekey_path: "{{ postgresql_ca_dir }}/ca-certificate.key"
+    privatekey_passphrase: "{{ postgresql_ca_passphrase }}"
+    common_name: DCI Internal CA
+    use_common_name_for_san: false  # since we do not specify SANs, don't use CN as a SAN
+    basic_constraints:
+      - 'CA:TRUE'
+    basic_constraints_critical: true
+    key_usage:
+      - keyCertSign
+    key_usage_critical: true
+
+- name: Create self-signed CA certificate from CSR
+  community.crypto.x509_certificate:
+    path: "{{ postgresql_ca_dir }}/ca-certificate.pem"
+    csr_path: "{{ postgresql_ca_dir }}/ca-certificate.csr"
+    privatekey_path: "{{ postgresql_ca_dir }}/ca-certificate.key"
+    privatekey_passphrase: "{{ postgresql_ca_passphrase }}"
+    provider: selfsigned
+
+# Generate self-signed certificate
+- name: Create private key for new certificate
+  community.crypto.openssl_privatekey:
+    path: "{{ postgresql_ca_dir }}/certificate.key"
+  run_once: true
+
+- name: Create certificate signing request (CSR) for new certificate
+  community.crypto.openssl_csr:
+    path: "{{ postgresql_ca_dir }}/certificate.csr"
+    privatekey_path: "{{ postgresql_ca_dir }}/certificate.key"
+    subject_alt_name:
+      - "DNS:db2.dci-001.prod.us-east-1.aws.redhat.com"
+      - "IP:192.168.124.107"
+    owner: root
+    group: root
+    mode: '0600'
+  run_once: true
+
+- name: Sign certificate with our CA
+  community.crypto.x509_certificate:
+    path: "{{ postgresql_ca_dir }}/certificate.pem"
+    csr_path: "{{ postgresql_ca_dir }}/certificate.csr"
+    provider: ownca
+    ownca_path: "{{ postgresql_ca_dir }}/ca-certificate.pem"
+    ownca_privatekey_path: "{{ postgresql_ca_dir }}/ca-certificate.key"
+    ownca_privatekey_passphrase: "{{ postgresql_ca_passphrase }}"
+    ownca_not_after: +365d  # valid for one year
+    ownca_not_before: "-1d"  # valid since yesterday
+    owner: root
+    group: root
+    mode: '0600'
+  run_once: true
+
+- name: Make CA cert, cert and key available for PostgreSQL
+  ansible.builtin.copy:
+    remote_src: true
+    src: "{{ postgresql_ca_dir }}/{{ item }}"
+    dest: "{{ postgresql_data_dir }}/userdata/{{ item }}"
+    owner: "{{ postgresql_user }}"
+    group: "{{ postgresql_group }}"
+    mode: "0600"
+    setype: container_file_t
+  loop:
+    - ca-certificate.pem
+    - certificate.pem
+    - certificate.key
+    - dhparams.pem
+  notify: Reload postgresql

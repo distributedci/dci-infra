@@ -1,0 +1,109 @@
+---
+- name: Postgresql Container Start Task
+  debug:
+    msg: Starting PostgreSQL container configuration
+
+- name: Verify if mandatory secrets are overriden
+  ansible.builtin.import_tasks:
+    file: verify_secrets.yml
+
+- name: Manage prerequisites
+  ansible.builtin.import_tasks:
+    file: prerequisites.yml
+
+- name: Create container config file
+  ansible.builtin.template:
+    src: postgresql-container.env.j2
+    dest: "{{ postgresql_container_spec.env_file }}"
+    mode: '0600'
+    owner: root
+    group: root
+  notify:
+    - Restart postgresql
+
+- name: Pull image for quadlet
+  containers.podman.podman_image:
+    name: "{{ postgresql_container_image }}"
+    force: true
+  notify:
+    - Restart postgresql
+
+- name: Create container quadlet
+  vars:
+    _quadlet: postgresql
+    _config: "{{ postgresql_container_spec }}"
+  ansible.builtin.template:
+    src: "global.container.j2"
+    dest: "/etc/containers/systemd/{{ _quadlet }}.container"
+    mode: '0640'
+  notify:
+    - Restart postgresql
+
+- name: Enable access to postgresql port in firewall
+  ansible.posix.firewalld:
+    port: "{{ postgresql_listen_port }}/tcp"
+    zone: "{{ postgresql_firewalld_zone | default(omit) }}"
+    state: enabled
+    immediate: true
+    permanent: true
+
+- name: Ensure service is started
+  ansible.builtin.systemd:
+    name: postgresql.service
+    state: started
+    daemon-reload: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Generate SSL CA & ownca Certificates
+  ansible.builtin.import_tasks:
+    file: ssl_ca.yml
+
+- name: Manage pg_hba.conf
+  ansible.builtin.import_tasks:
+    file: pg_hba.yml
+
+- name: Manage postgresql configuration
+  ansible.builtin.import_tasks:
+    file: postgresql_config.yml
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+  # When restarting, the container runs the database service, set the admin password
+  # and then stops & starts the database service for good.
+  # We have to wait until the service is really available before continuing.
+- name: Wait a few seconds for the database service to set admin password and restart
+  ansible.builtin.wait_for:
+    port: 5432
+    delay: 5
+    host: 127.0.0.1
+
+- name: Create dci user
+  community.postgresql.postgresql_user:
+    name: "{{ dbuser }}"
+    password: "{{ dbpassword }}"
+    login_host: 127.0.0.1
+    login_password: "{{ postgresql_admin_password }}"
+    login_user: postgres
+    ca_cert: "{{ postgresql_ca_dir }}/ca_certificate.pem"
+
+- name: Create dci database
+  community.postgresql.postgresql_db:
+    name: "{{ dbname }}"
+    owner: "{{ dbuser }}"
+    login_host: 127.0.0.1
+    login_password: "{{ postgresql_admin_password }}"
+    login_user: postgres
+    ca_cert: "{{ postgresql_ca_dir }}/ca_certificate.pem"
+
+- name: Grant privileges to dci user
+  community.postgresql.postgresql_privs:
+    type: database
+    database: "{{ dbname }}"
+    role: "{{ dbuser }}"
+    privs: ALL
+    login_host: 127.0.0.1
+    login_password: "{{ postgresql_admin_password }}"
+    login_user: postgres
+    ca_cert: "{{ postgresql_ca_dir }}/ca_certificate.pem"
+...
