@@ -64,6 +64,17 @@
         - nginx
         - monitoring
 
+- name: Setup postgresql database
+  hosts: dci_database:&dci_ng
+  gather_facts: true
+  become: true
+
+  roles:
+    - name: quadlet.postgresql
+      tags:
+        - postgresql
+        - podman
+
 - name: Setup haproxy
   hosts: dci_api:dci_doc:dci_ui:&dci_ng
   gather_facts: true
