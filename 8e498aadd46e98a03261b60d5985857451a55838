@@ -16,6 +16,23 @@
       "message": "I have fixed the issues with the integration tests, just rhel-9 is failing but that is true for every other case, PTAL",
       "revId": "8e498aadd46e98a03261b60d5985857451a55838",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de1551f0_9bbbbbd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-07-03T21:57:26Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "8e498aadd46e98a03261b60d5985857451a55838",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
