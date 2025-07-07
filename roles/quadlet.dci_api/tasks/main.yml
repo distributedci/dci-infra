@@ -38,8 +38,26 @@
       containers.podman.podman_image:
         name: "{{ _config.image }}"
         force: true
+      register: dci_api_container_pulled
       notify:
         - Restart dci-api
+
+    - name: Ensure backup is made
+      ansible.builtin.command: "{{ dci_db_backup_command }}"
+      delegate_to: "{{ groups.dci_database | first }}"
+      become: true
+      become_user: "{{ yolo_backup_user | default('dci') }}"
+      # Backups can take some time
+      # To avoid ssh connection behaving badly (timeout, ansible not resuming after backup done)
+      # we run as an async task, limiting it to 30 minutes and checking if it's done every 15 seconds
+      async: 1800
+      poll: 15
+      changed_when: true
+      when:
+        - dci_db_backup_before_cs_upgrade | default(False)
+        - dci_api_container_pulled.changed | defauilt(False)
+      tags:
+        - dci-core
 
     - name: Create container quadlet
       ansible.builtin.template:
