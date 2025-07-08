@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af3fa0c1_f9ea04aa",
+        "filename": "roles/quadlet.dci_api/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-07-08T16:30:17Z",
+      "side": 1,
+      "message": "I\u0027d much rather have this in its own tiny role applied to the dci_database group, once you start mixing execution on different hosts with delegate_to complexity increases. If you want to do this after the api container is updated use a handler and notify it.",
+      "revId": "8acebdcd1b926b57fb447d369673c2fd698f2efe",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b87c6d1c_1666b3f4",
+        "filename": "roles/quadlet.dci_api/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-07-08T16:30:17Z",
+      "side": 1,
+      "message": "defauilt - typo",
+      "revId": "8acebdcd1b926b57fb447d369673c2fd698f2efe",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
