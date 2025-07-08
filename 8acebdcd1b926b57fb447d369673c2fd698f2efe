@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21417752_7a8ec0a1",
+        "filename": "roles/quadlet.dci_api/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-07-08T16:46:22Z",
+      "side": 1,
+      "message": "Okay, so what I need is to do a backup:\n- if there\u0027s a new version of the container\n- before the new version of the container is started (because the container runs the migrations on start).\n\nI don\u0027t think applying a role would be possible in this case.\nI suppose I could use a handler to do run this code but it would still need to use delegate_to I think.\n\nDo you have another idea to handle this ?",
+      "parentUuid": "af3fa0c1_f9ea04aa",
+      "revId": "8acebdcd1b926b57fb447d369673c2fd698f2efe",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b87c6d1c_1666b3f4",
         "filename": "roles/quadlet.dci_api/tasks/main.yml",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2025-07-08T16:30:17Z",
       "side": 1,
       "message": "defauilt - typo",
+      "revId": "8acebdcd1b926b57fb447d369673c2fd698f2efe",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a93d882f_c6774185",
+        "filename": "roles/quadlet.dci_api/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-07-08T16:46:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b87c6d1c_1666b3f4",
       "revId": "8acebdcd1b926b57fb447d369673c2fd698f2efe",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
