@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83231f8b_1c0dc9c8",
+        "filename": "roles/packages/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2025-07-08T16:31:44Z",
+      "side": 1,
+      "message": "do you even need to create the zuul user anymore?",
+      "revId": "101a35170f0a16fbb8fc77eb617c99be4345ec18",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
