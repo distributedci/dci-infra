@@ -36,6 +36,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8bed69e_75174627",
+        "filename": "roles/quadlet.dci_api/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-07-09T20:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21417752_7a8ec0a1",
+      "revId": "8acebdcd1b926b57fb447d369673c2fd698f2efe",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b87c6d1c_1666b3f4",
