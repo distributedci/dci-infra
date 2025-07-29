@@ -41,6 +41,30 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e8f1406_af705b1d",
+        "filename": "roles/infra.simple/defaults/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-07-29T16:17:57Z",
+      "side": 1,
+      "message": "Later if required",
+      "parentUuid": "4da80138_f8d8b00b",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 56
+      },
+      "revId": "070529f6de7cab8e9c1022aa17936c91ef6444a9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3421f8f6_ec12bd7f",
@@ -64,6 +88,30 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e1eed5d_aa0e43b1",
+        "filename": "roles/quadlet.postgresql/defaults/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-07-29T16:17:57Z",
+      "side": 1,
+      "message": "`pg_ctl reload` requires PGDATA env var which is set via:\n\n```\nsource /usr/share/container-scripts/postgresql/common.sh\nset_pgdata\n```\nonly then can we issue `pg_ctl reload`\n\nissuing `kill -HUP 1` will be fine for now.",
+      "parentUuid": "3421f8f6_ec12bd7f",
+      "range": {
+        "startLine": 23,
+        "startChar": 18,
+        "endLine": 23,
+        "endChar": 40
+      },
+      "revId": "070529f6de7cab8e9c1022aa17936c91ef6444a9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d4d45a1_0059db1a",
@@ -77,6 +125,24 @@
       "writtenOn": "2025-07-18T19:56:20Z",
       "side": 1,
       "message": "Can this be implemented by defining role specs ?",
+      "revId": "070529f6de7cab8e9c1022aa17936c91ef6444a9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8693f72e_d10165a5",
+        "filename": "roles/quadlet.postgresql/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-07-29T16:17:57Z",
+      "side": 1,
+      "message": "arg_spec specifications can test args existence \u0026 type, not content validation.",
+      "parentUuid": "4d4d45a1_0059db1a",
       "revId": "070529f6de7cab8e9c1022aa17936c91ef6444a9",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
@@ -127,6 +193,30 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25f1f322_ed440d50",
+        "filename": "roles/quadlet.postgresql/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-07-29T16:17:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78c9a6de_0fe77780",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 85
+      },
+      "revId": "070529f6de7cab8e9c1022aa17936c91ef6444a9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "152e3e49_8c161d61",
@@ -140,6 +230,24 @@
       "writtenOn": "2025-07-18T19:56:20Z",
       "side": 1,
       "message": "Specify for what they\u0027re required",
+      "revId": "070529f6de7cab8e9c1022aa17936c91ef6444a9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97d7bcbb_69d6feae",
+        "filename": "roles/quadlet.postgresql/tasks/prerequisites.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-07-29T16:17:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "152e3e49_8c161d61",
       "revId": "070529f6de7cab8e9c1022aa17936c91ef6444a9",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
@@ -180,6 +288,30 @@
       "writtenOn": "2025-07-18T19:56:20Z",
       "side": 1,
       "message": "can this be moved to some role spec ???",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 45
+      },
+      "revId": "070529f6de7cab8e9c1022aa17936c91ef6444a9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5415edb_ac50b337",
+        "filename": "roles/quadlet.postgresql/tasks/verify_secrets.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-07-29T16:17:57Z",
+      "side": 1,
+      "message": "No, but using `ansible.builtin.assert:` is nicer.",
+      "parentUuid": "47325a35_eb3d5b8a",
       "range": {
         "startLine": 2,
         "startChar": 0,
