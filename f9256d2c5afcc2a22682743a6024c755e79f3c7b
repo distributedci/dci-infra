@@ -39,6 +39,30 @@
       },
       "revId": "f9256d2c5afcc2a22682743a6024c755e79f3c7b",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69f8a2e5_3a66b643",
+        "filename": "roles/dci-analytics/tasks/firewalld.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 29
+      },
+      "writtenOn": "2025-08-04T14:21:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f269f32_ebae911b",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 4
+      },
+      "revId": "f9256d2c5afcc2a22682743a6024c755e79f3c7b",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
