@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79c85c50_bd8d7258",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-08-04T10:38:57Z",
+      "side": 1,
+      "message": "Just one issue to fix due to the change in the naming of the zone.",
+      "revId": "f9256d2c5afcc2a22682743a6024c755e79f3c7b",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f269f32_ebae911b",
+        "filename": "roles/dci-analytics/tasks/firewalld.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-08-04T10:38:57Z",
+      "side": 1,
+      "message": "If you want to change the name of the zone, you\u0027ll have to remove the previous one before (one source IP address can\u0027t be in multiple zones).\n\nSo there are 2 options:\n- don\u0027t change the zone name\n- add another task to delete the current \"analytics-api\" zone before creating the new \"analytics\" zone.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 4
+      },
+      "revId": "f9256d2c5afcc2a22682743a6024c755e79f3c7b",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
