@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7691d535_8f08a7f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-08-05T13:09:52Z",
+      "side": 1,
+      "message": "I\u0027d prefer that instead the `print()` statements are changed to `logging.info()` or whatever level is good.\n\nWith a default logging configuration sending logs to stdout/stderr with `flush\u003dTrue` passed to the handler would achieve the same as `PYTHONUNBUFFERED`.\n\nThis could also allow enabling some logs from Kombu to get information about the connection status, retries, etc. …\n\nWhat do you think ?",
+      "revId": "f2c38d0b9aa1a8eb09eb4e8cf01273db9a55ea6f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
