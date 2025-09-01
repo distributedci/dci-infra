@@ -89,16 +89,6 @@
   tags:
     - feeder
 
-- name: Install DCI Feeder workers
-  hosts: dci_feeder_worker:!dci_ng
-  become: yes
-  tasks:
-    - import_role:
-        name: dci-feeder
-        tasks_from: standalone_worker
-  tags:
-    - feeder
-
 - name: Install DCI UMB
   hosts: dci_umb:!dci_ng
   become: yes
