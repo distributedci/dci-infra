@@ -1,0 +1,9 @@
+Code-Review+1: Guillaume Vincent <gvincent@redhat.com>
+Workflow+1: Yassine Lamgarchal <yassine.lamgarchal@redhat.com>
+Code-Review+2: Yassine Lamgarchal <yassine.lamgarchal@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Mon, 01 Sep 2025 14:22:23 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/dci-infra/+/34327
+Project: dci-infra
+Branch: refs/heads/master
