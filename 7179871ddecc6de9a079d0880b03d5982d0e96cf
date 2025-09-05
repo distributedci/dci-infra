@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d01404b_549ad17f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-09-05T13:28:28Z",
+      "side": 1,
+      "message": "Ok for rhel9 vars.\n\nRegarding dci_dirs just reuse dci_files using `dirname:` key only.",
+      "revId": "7179871ddecc6de9a079d0880b03d5982d0e96cf",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c661895e_54b57231",
+        "filename": "roles/infra.simple/defaults/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-09-05T13:28:28Z",
+      "side": 1,
+      "message": "No need, this should reuse simple_files using only the `dirname:` key",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 2
+      },
+      "revId": "7179871ddecc6de9a079d0880b03d5982d0e96cf",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37940760_602923ed",
+        "filename": "roles/infra.simple/tasks/dirs.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-09-05T13:28:28Z",
+      "side": 1,
+      "message": "This feature exists in tasks/files.yml using only the \"dirname:\" key",
+      "revId": "7179871ddecc6de9a079d0880b03d5982d0e96cf",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bb3a001_482bc03a",
+        "filename": "roles/infra.simple/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-09-05T13:28:28Z",
+      "side": 1,
+      "message": "No need, use simple_files with \"dirname:\"",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 7
+      },
+      "revId": "7179871ddecc6de9a079d0880b03d5982d0e96cf",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c0b0732_828caa0e",
+        "filename": "roles/postgresql/vars/rhel-9.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-09-05T13:28:28Z",
+      "side": 1,
+      "message": "ack",
+      "revId": "7179871ddecc6de9a079d0880b03d5982d0e96cf",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
