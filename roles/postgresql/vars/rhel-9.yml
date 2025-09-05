@@ -4,7 +4,7 @@ postgres_mem_conf: /var/lib/pgsql/data/memory.conf
 postgres_auth_conf: /var/lib/pgsql/data/pg_hba.conf
 postgres_service: postgresql
 postgres_packages:
-  - "@postgresql:13"
+  - "@postgresql:16"
   - postgresql
   - postgresql-server
   - python3-psycopg2

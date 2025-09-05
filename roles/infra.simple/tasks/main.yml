@@ -41,7 +41,13 @@
   tags:
     - ssh
 
-- name: Import file and directory tasks
+- name: Import directory tasks
+  ansible.builtin.import_tasks:
+    file: dirs.yml
+  tags:
+    - dirs
+
+- name: Import file tasks
   ansible.builtin.import_tasks:
     file: files.yml
   tags:
