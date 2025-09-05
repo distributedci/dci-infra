@@ -1,0 +1,12 @@
+---
+- name: Create directories from simple_dirs list
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode | default('0755') }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+  loop: "{{ simple_dirs }}"
+  loop_control:
+    label: "{{ item.path }}"
+...

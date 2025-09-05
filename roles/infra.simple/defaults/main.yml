@@ -1,6 +1,7 @@
 ---
 # base system
 simple_packages: []
+simple_dirs: []
 simple_mounts: {}
 simple_users: {}
 simple_groups: {}
