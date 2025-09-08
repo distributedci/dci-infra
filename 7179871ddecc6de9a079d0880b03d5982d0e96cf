@@ -41,6 +41,30 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc8c1fe1_38f95529",
+        "filename": "roles/infra.simple/defaults/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2025-09-08T11:35:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c661895e_54b57231",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 2
+      },
+      "revId": "7179871ddecc6de9a079d0880b03d5982d0e96cf",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37940760_602923ed",
@@ -76,6 +100,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c8b96f9_5d2f39e3",
+        "filename": "roles/infra.simple/tasks/dirs.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2025-09-08T11:35:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "371b3268_49aad9ce",
+      "revId": "7179871ddecc6de9a079d0880b03d5982d0e96cf",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bb3a001_482bc03a",
@@ -89,6 +131,30 @@
       "writtenOn": "2025-09-05T13:28:28Z",
       "side": 1,
       "message": "No need, use simple_files with \"dirname:\"",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 7
+      },
+      "revId": "7179871ddecc6de9a079d0880b03d5982d0e96cf",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "610a7ef5_11f98c74",
+        "filename": "roles/infra.simple/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2025-09-08T11:35:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bb3a001_482bc03a",
       "range": {
         "startLine": 44,
         "startChar": 0,
