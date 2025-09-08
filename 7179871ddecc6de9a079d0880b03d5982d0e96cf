@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "371b3268_49aad9ce",
+        "filename": "roles/infra.simple/tasks/dirs.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2025-09-08T08:24:16Z",
+      "side": 1,
+      "message": "are you sure?\n\nThe `Create directory path from file list` task you are probably referring to is create parent directories of the files.\n\nSo maybe you want me to create a dummy file like this ?\n\n```\nsimple_files:\n  /etc/letsencrypt/.dummy:\n    dir_mode: \"0755\"\n    owner: root\n    group: root\n```",
+      "parentUuid": "37940760_602923ed",
+      "revId": "7179871ddecc6de9a079d0880b03d5982d0e96cf",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3bb3a001_482bc03a",
         "filename": "roles/infra.simple/tasks/main.yml",
         "patchSetId": 3
