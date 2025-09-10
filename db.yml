@@ -14,6 +14,22 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+- name: Prepare system for PostgreSQL
+  hosts: dci_database
+  become: yes
+  tasks:
+    - name: Install firewalld and python firewalld bindings
+      ansible.builtin.package:
+        name:
+          - firewalld
+          - python3-firewall
+
+    - name: Enable firewalld
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: true
+
 - name: Install-PostgreSQL
   hosts: dci_database
   become: yes
