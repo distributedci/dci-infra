@@ -37,7 +37,7 @@
     - name: Pull image
       containers.podman.podman_image:
         name: "{{ _config.image }}"
-        force: true
+        force: "{{ _config.force_pull | default(true) }}"
       notify:
         - Run yolo backup with 'current' tag
         - Restart dci-api

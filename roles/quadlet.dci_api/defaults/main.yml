@@ -2,8 +2,10 @@
 dci_api_container_image: quay.io/distributedci/dci-control-server:latest
 dci_api_container_network: quadlet.network
 dci_api_container_scale: 4
+dci_api_container_force_pull: true
 dci_api_container_spec:
   image: "{{ dci_api_container_image }}"
+  force_pull: "{{ dci_api_container_force_pull }}"
   no_quadlet_image: true
   network: "{{ dci_api_container_network }}"
   env_file: /etc/dci-api/dci-api.env
