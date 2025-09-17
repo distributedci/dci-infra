@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "c57c6ab574bfeadd83f389cbec114cb4d47c0bea",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee5b7b4a_6c50e8cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-09-17T10:30:33Z",
+      "side": 1,
+      "message": "if we use the container from quay this is not useful I suppose.",
+      "revId": "c57c6ab574bfeadd83f389cbec114cb4d47c0bea",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
