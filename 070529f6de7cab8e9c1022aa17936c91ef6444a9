@@ -170,6 +170,30 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c12c38b3_f657516a",
+        "filename": "roles/quadlet.postgresql/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-09-18T12:39:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b23ad494_4cee577f",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 20
+      },
+      "revId": "070529f6de7cab8e9c1022aa17936c91ef6444a9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78c9a6de_0fe77780",
@@ -265,6 +289,30 @@
       "writtenOn": "2025-07-18T19:56:20Z",
       "side": 1,
       "message": "This needs to be changed",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 22
+      },
+      "revId": "070529f6de7cab8e9c1022aa17936c91ef6444a9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4e8e2d6_7ec7bb33",
+        "filename": "roles/quadlet.postgresql/tasks/ssl_ca.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2025-09-18T12:39:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f548877_bb902dc0",
       "range": {
         "startLine": 57,
         "startChar": 0,
