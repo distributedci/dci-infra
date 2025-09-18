@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b2ab792_f02d100f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2025-09-18T11:43:43Z",
+      "side": 1,
+      "message": "I think you need to add depends-On dci-infra-data-ci and data-prod no ?\nhttps://softwarefactory-project.io/r/c/dci-infra-data-ci/+/34420",
+      "revId": "259326f3cb89b6873c7837ddf6e44bbfcfedd784",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
