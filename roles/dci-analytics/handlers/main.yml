@@ -20,3 +20,9 @@
     name: dci-analytics-sync.timer
     state: restarted
     enabled: yes
+
+- name: Restart dci-rabbitmq container
+  systemd:
+    name: dci-rabbitmq.service
+    state: restarted
+    enabled: yes

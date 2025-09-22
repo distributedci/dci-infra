@@ -7,7 +7,9 @@
     src: "dci-analytics.env.j2"
     dest: "/etc/dci-analytics.env"
     mode: 0640
-  notify: Restart dci-analytics container
+  notify:
+    - Restart dci-analytics container
+    - Restart dci-analytics-worker container
 
 - name: Install dci-analytics unit files
   copy:
@@ -18,11 +20,13 @@
     - dci-analytics-sync.timer
     - dci-analytics.service
     - dci-analytics-worker.service
+    - dci-rabbitmq.service
   notify:
     - Reload systemd for dci-analytics
     - Restart dci-analytics container
     - Restart dci-analytics-sync timer
     - Restart dci-analytics-worker container
+    - Restart dci-rabbitmq container
 
 - name: Flush handlers
   meta: flush_handlers
@@ -36,6 +40,7 @@
     - dci-analytics-sync.timer
     - dci-analytics-sync.service
     - dci-analytics-worker.service
+    - dci-rabbitmq.service
 
 - name: Update dci-analytics container with podman auto-update
   ansible.builtin.shell: podman auto-update
