@@ -10,6 +10,7 @@
       package:
         name: awscli
       become: true
+      become_user: root
       when:
         - not aws_cli_binary.stat.exists|default(False)
 
