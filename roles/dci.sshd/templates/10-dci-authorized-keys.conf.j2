@@ -1,0 +1,1 @@
+AuthorizedKeysFile .ssh/authorized_keys{% for entry in dci_sshd_users_authorized_keys %} /etc/ssh/authorized_keys.d/{{ entry.file_prefix }}_%u{% endfor %}

@@ -1,0 +1,13 @@
+---
+- name: Restore SELinux context for authorized_keys.d
+  ansible.builtin.command:
+    cmd: restorecon -Rv /etc/ssh/authorized_keys.d
+  when: ansible_selinux.status == 'enabled'
+  become: true
+
+- name: Restart sshd
+  ansible.builtin.systemd:
+    name: sshd
+    state: restarted
+  become: true
+  become_user: root

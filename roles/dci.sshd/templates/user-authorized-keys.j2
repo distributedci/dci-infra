@@ -1,0 +1,4 @@
+{% for key_entry in item.1['keys'] %}
+{% if key_entry.options | default('') | length > 0 %}{{ key_entry.options }} {% endif %}{{ key_entry.key }}{% if key_entry.comment | default('') | length > 0 %} {{ key_entry.comment }}{% endif %}
+
+{% endfor %}
