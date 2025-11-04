@@ -1,0 +1,37 @@
+---
+# tasks file for dci.sshd
+- name: Deploy custom AuthorizedKeysFile configuration
+  ansible.builtin.template:
+    src: 10-dci-authorized-keys.conf.j2
+    dest: /etc/ssh/sshd_config.d/10-dci-authorized-keys.conf
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  become_user: root
+  notify: Restart sshd
+
+- name: Create authorized_keys.d directory
+  ansible.builtin.file:
+    path: /etc/ssh/authorized_keys.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+  become_user: root
+  when: dci_ssh_users_authorized_keys | length > 0
+
+- name: Create user-specific authorized keys files
+  ansible.builtin.template:
+    src: user-authorized-keys.j2
+    dest: "/etc/ssh/authorized_keys.d/{{ item.value.prefix }}_{{ item.key }}"
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  become_user: root
+  loop: "{{ dci_ssh_users_authorized_keys | dict2items }}"
+  vars:
+    keys: "{{ item.value.keys }}"
+  when: dci_ssh_users_authorized_keys | length > 0

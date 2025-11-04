@@ -1,0 +1,3 @@
+{% for key_entry in keys %}
+{% if key_entry.options | default('') %}{{ key_entry.options }} {% endif %}{{ key_entry.key }}{% if key_entry.comment | default('') %} {{ key_entry.comment }}{% endif %}
+{% endfor %}
