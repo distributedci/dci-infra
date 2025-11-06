@@ -1,0 +1,1 @@
+AuthorizedKeysFile .ssh/authorized_keys{% for file in dci_ssh_authorizedkeysfiles %} {{ file }}{% endfor %}

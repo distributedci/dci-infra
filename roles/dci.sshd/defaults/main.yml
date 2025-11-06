@@ -1,0 +1,13 @@
+---
+dci_ssh_authorizedkeysfiles: []
+
+# Dictionary mapping username to authorized keys configuration
+# Example:
+# dci_ssh_users_authorized_keys:
+#   john:
+#     prefix: "dci"
+#     keys:
+#       - key: "ssh-rsa AAAAB3NzaC1..."
+#         comment: "John's laptop"
+#         options: "from=\"192.168.1.*\""
+dci_ssh_users_authorized_keys: {}
