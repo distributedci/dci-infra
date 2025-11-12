@@ -15,6 +15,8 @@ dci_api_container_spec:
   notify: true
   timeoutstartsec: 300
 
+dci_redis_url: "redis://localhost:6379/0"
+
 gunicorn_nb_workers: 1
 gunicorn_worker_connections: 100
 gunicorn_max_requests: 0
