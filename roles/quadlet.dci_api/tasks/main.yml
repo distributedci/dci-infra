@@ -15,33 +15,58 @@
       notify:
         - Reload haproxy
 
-- name: Create container env directory
-  ansible.builtin.file:
-    path: /etc/dci-api/
-    mode: '0750'
-    state: directory
-
-- name: Create container env configuration
-  ansible.builtin.template:
-    src: dci-api.env.j2
-    dest: /etc/dci-api/dci-api.env
-    mode: '0640'
-  notify:
-    - Restart dci-api
-
-- name: Create the required amount of containers
-  vars:
-    _quadlet: dci-api
-    _config: "{{ dci_api_container_spec }}"
+- name: Common config for dci-api and dci-api-auth-tracking
   block:
-    - name: Pull image
+    - name: Create container env directory
+      ansible.builtin.file:
+        path: /etc/dci-api/
+        mode: '0750'
+        state: directory
+
+    - name: Create container env configuration
+      ansible.builtin.template:
+        src: dci-api.env.j2
+        dest: /etc/dci-api/dci-api.env
+        mode: '0640'
+      notify:
+        - Restart dci-api
+        - Restart dci-api-auth-tracking
+
+    - name: Pull dci-control-server image
       containers.podman.podman_image:
-        name: "{{ _config.image }}"
+        name: "{{ dci_api_container_spec.image }}"
         force: true
       notify:
         - Run yolo backup with 'current' tag
         - Restart dci-api
+        - Restart dci-api-auth-tracking
 
+- name: Create the dci-api-auth-tracking container
+  vars:
+    _quadlet: dci-api-auth-tracking
+    _config: "{{ dci_api_auth_tracking_container_spec }}"
+  block:
+    # Since the image is shared with dci-control-server, we don't use a .image systemd definition
+    - name: Create container quadlet
+      ansible.builtin.template:
+        src: "global.container.j2"
+        dest: "/etc/containers/systemd/{{ _quadlet }}.container"
+        mode: '0640'
+      notify:
+        - Restart dci-api-auth-tracking
+
+    - name: Start the container
+      ansible.builtin.systemd:
+        name: "{{ _quadlet }}.service"
+        state: started
+        daemon-reload: true
+      ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Create the required amount of dci-api containers
+  vars:
+    _quadlet: dci-api
+    _config: "{{ dci_api_container_spec }}"
+  block:
     - name: Create container quadlet
       ansible.builtin.template:
         src: "global.container.j2"
@@ -74,6 +99,7 @@
           ignore_errors: "{{ ansible_check_mode }}"
           loop: "{{ range(dci_api_container_scale, _container_units_found.matched) | list }}"
 
+    # IMPORTANT: We flush handlers here, so all services which are restarted in a handler must be correctly setup before this
     - name: Allow to perfom the database backup & restart the current containers before the next task which starts the service
       ansible.builtin.meta: flush_handlers
 
@@ -84,5 +110,4 @@
         daemon-reload: true
       ignore_errors: "{{ ansible_check_mode }}"
       loop: "{{ range(0, _config.scale) | list }}"
-
 ...
