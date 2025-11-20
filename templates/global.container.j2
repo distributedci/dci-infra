@@ -22,6 +22,14 @@ ContainerName={{ _quadlet }}{{ "-%i" if _config.scale is defined else "" }}
 Exec={{ _config.command }}
 {% endif %}
 HostName={{ _quadlet }}{{ "-%i" if _config.scale is defined else "" }}
+{% if _config.entrypoint is defined %}
+{% if _config.entrypoint %}
+Entrypoint={{ _config.entrypoint }}
+{% else %}
+# Disable entrypoint if _config.entrypoint is empty string
+PodmanArgs=--entrypoint=""
+{% endif %}
+{% endif %}
 {% for e in _config.env | default({}) -%}
 Environment={{ e | upper }}="{{ _config.env[e] }}"
 {% endfor %}

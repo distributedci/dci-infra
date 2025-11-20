@@ -6,4 +6,13 @@
     daemon-reload: true
   ignore_errors: "{{ ansible_check_mode }}"
   loop: "{{ range(0, dci_api_container_scale) | list }}"
+
+- name: Restart dci-api-auth-tracking
+  ansible.builtin.systemd:
+    name: dci-api-auth-tracking.service
+    state: restarted
+    daemon-reload: true
+  when: dci_api_auth_tracking_enabled
+  ignore_errors: "{{ ansible_check_mode }}"
+
 ...

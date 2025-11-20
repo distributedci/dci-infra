@@ -15,6 +15,22 @@ dci_api_container_spec:
   notify: true
   timeoutstartsec: 300
 
+dci_api_auth_tracking_container_network: quadlet.network
+dci_api_auth_tracking_container_spec:
+  image: "{{ dci_api_container_image }}"
+  no_quadlet_image: true
+  network: "{{ dci_api_container_network }}"
+  env_file: /etc/dci-api/dci-api.env
+  labels:
+    io.distributed-ci.app: dci_api_auth_tracking
+  timeoutstartsec: 300
+  entrypoint:
+  command: bin/dci-sync-redis-auth --interval 30 --threshold 10
+
+# If the role is deployed on multiple machines,
+# this should be enabled on one machine only.
+dci_api_auth_tracking_enabled: true
+
 dci_redis_url: "redis://localhost:6379/0"
 
 gunicorn_nb_workers: 1
