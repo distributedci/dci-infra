@@ -43,6 +43,10 @@
     name: ca-certificates
     update_cache: yes
     state: latest
+  register: ca_certificates_update
+  async: 300
+  poll: 5
+  until: ca_certificates_update.rc == 0
 
 - name: Remove python2-distro package
   package:
