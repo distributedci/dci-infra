@@ -1,0 +1,119 @@
+---
+# tasks file for dci.sshd
+- name: Make sure sshd_config.d exists
+  ansible.builtin.file:
+    path: /etc/ssh/sshd_config.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0700"
+  become: true
+  become_user: root
+  notify: Restart sshd
+
+- name: Make sure sshd_config.d is included in sshd_config
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    line: 'Include /etc/ssh/sshd_config.d/*.conf'
+    insertbefore: BOF
+  become: true
+  become_user: root
+  notify: Restart sshd
+
+- name: Deploy custom AuthorizedKeysFile configuration
+  ansible.builtin.template:
+    src: 10-dci-authorized-keys.conf.j2
+    dest: /etc/ssh/sshd_config.d/10-dci-authorized-keys.conf
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  become_user: root
+  notify: Restart sshd
+
+- name: Set SELinux fcontext for authorized_keys.d directory
+  community.general.sefcontext:
+    target: '/etc/ssh/authorized_keys\.d(/.*)?'
+    setype: ssh_home_t
+    state: present
+    reload: true
+  become: true
+  notify: Restore SELinux context for authorized_keys.d
+
+- name: Create authorized_keys.d directory
+  ansible.builtin.file:
+    path: /etc/ssh/authorized_keys.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+  become_user: root
+
+- name: Create user-specific authorized keys files
+  ansible.builtin.template:
+    src: user-authorized-keys.j2
+    dest: "/etc/ssh/authorized_keys.d/{{ item.0.file_prefix }}_{{ item.1.name }}"
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  become_user: root
+  with_subelements:
+    - "{{ dci_sshd_users_authorized_keys }}"
+    - for_users
+    - skip_missing: true
+
+- name: Find all files in authorized_keys.d directory
+  ansible.builtin.find:
+    paths: /etc/ssh/authorized_keys.d
+    file_type: file
+  become: true
+  become_user: root
+  register: existing_key_files
+  when: dci_sshd_remove_unmanaged | bool
+
+- name: Remove unmanaged authorized keys files
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  become: true
+  become_user: root
+  loop: "{{ existing_key_files.files | default([]) }}"
+  when:
+    - dci_sshd_remove_unmanaged | bool
+    - not is_managed | bool
+  vars:
+    filename: "{{ item.path | basename }}"
+    # Build list of all configured prefixes (both managed and user-managed)
+    all_prefixes: "{{ dci_sshd_users_authorized_keys | map(attribute='file_prefix') | list }}"
+    # Check if filename starts with any configured prefix followed by underscore
+    is_managed: |-
+      {%- set matched = namespace(value=false) -%}
+      {%- for prefix in all_prefixes -%}
+        {%- if filename.startswith(prefix ~ '_') -%}
+          {%- set matched.value = true -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {{ matched.value }}
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: Block for sshd config test
+  block:
+    - name: Test sshd configuration file before restarting
+      ansible.builtin.command:
+        cmd: sshd -t
+      register: sshd_config_test
+      failed_when: sshd_config_test is failed
+      changed_when: false
+  rescue:
+    - name: Output sshd config result if failed
+      ansible.builtin.debug:
+        var: sshd_config_test.stderr
+      when: sshd_config_test is failed
+
+    - name: Fail
+      ansible.builtin.fail:
+        msg: SSH config test failed, bailing out

@@ -1,0 +1,190 @@
+---
+# Test example for dci_sshd_remove_unmanaged feature
+# This playbook tests that unmanaged files are removed while managed files are kept
+#
+# Usage: ansible-playbook -i inv.yaml test-remove-unmanaged.yml
+#
+# This example:
+# 1. Creates some managed files via the role
+# 2. Manually creates unmanaged test files
+# 3. Re-runs the role with remove_unmanaged enabled
+# 4. Verifies that only managed files remain
+
+- name: Test remove_unmanaged feature for dci.sshd role
+  hosts: all
+  become: true
+
+  vars:
+    test_directory: /etc/ssh/authorized_keys.d
+    managed_files:
+      - humans_alice
+      - humans_bob
+      - robots_deployer
+    user_managed_files:
+      - manual_admin_ec2-user
+      - manual_admin_www
+    unmanaged_files:
+      - old_backup_file
+      - random_test
+      - legacy_key
+
+  tasks:
+    - name: "Phase 0: Clean up directory before test"
+      ansible.builtin.file:
+        path: "{{ test_directory }}"
+        state: absent
+
+    - name: "Phase 0: Recreate empty directory"
+      ansible.builtin.file:
+        path: "{{ test_directory }}"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: "Phase 1: Initial setup - create managed files"
+      ansible.builtin.include_role:
+        name: ../../dci.sshd
+      vars:
+        dci_sshd_users_authorized_keys:
+          - file_prefix: manual_admin  # User-managed - no for_users
+          - file_prefix: humans
+            for_users:
+              - name: alice
+                keys:
+                  - key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQwEr2F+6vZ8L9kNjFkZ8wQwKvHLmNxYzP3vF9kLp2H"
+                    comment: "alice@laptop"
+                    options: ""
+              - name: bob
+                keys:
+                  - key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHmPqR3tYv8sL1kNjFkZ8wQwKvHLmNxYzP3vF9kLp2H"
+                    comment: "bob@desktop"
+                    options: ""
+          - file_prefix: robots
+            for_users:
+              - name: deployer
+                keys:
+                  - key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDmK2lPqR5vL9kNjFkZ8wQwKvHLmNxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qW"
+                    comment: "CI/CD deployment key"
+                    options: 'command="/usr/local/bin/deploy.sh"'
+        dci_sshd_remove_unmanaged: false
+
+    - name: "Phase 2: Create user-managed files (manual_admin prefix)"
+      ansible.builtin.copy:
+        content: "ssh-rsa AAAAB3... admin@example.com\n"
+        dest: "{{ test_directory }}/{{ item }}"
+        owner: root
+        group: root
+        mode: "0644"
+      loop: "{{ user_managed_files }}"
+
+    - name: "Phase 2: Create unmanaged test files"
+      ansible.builtin.copy:
+        content: "ssh-rsa AAAAB3... test@example.com\n"
+        dest: "{{ test_directory }}/{{ item }}"
+        owner: root
+        group: root
+        mode: "0644"
+      loop: "{{ unmanaged_files }}"
+
+    - name: "Phase 2: Verify all files exist (managed + unmanaged)"
+      ansible.builtin.find:
+        paths: "{{ test_directory }}"
+        file_type: file
+      register: all_files_before
+
+    - name: "Phase 2: Display files before cleanup"
+      ansible.builtin.debug:
+        msg: "Files present: {{ all_files_before.files | map(attribute='path') | map('basename') | list | sort }}"
+
+    - name: "Phase 2: Assert all files exist"
+      ansible.builtin.assert:
+        that:
+          - all_files_before.matched == (managed_files | length) + (user_managed_files | length) + (unmanaged_files | length)
+        fail_msg: "Expected {{ (managed_files | length) + (user_managed_files | length) + (unmanaged_files | length) }} files, found {{ all_files_before.matched }}"
+        success_msg: "✓ All {{ all_files_before.matched }} files present ({{ managed_files | length }} managed + {{ user_managed_files | length }} user-managed + {{ unmanaged_files | length }} unmanaged)"
+
+    - name: "Phase 3: Re-run role with remove_unmanaged enabled"
+      ansible.builtin.include_role:
+        name: ../../dci.sshd
+      vars:
+        dci_sshd_users_authorized_keys:
+          - file_prefix: manual_admin  # User-managed - no for_users
+          - file_prefix: humans
+            for_users:
+              - name: alice
+                keys:
+                  - key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQwEr2F+6vZ8L9kNjFkZ8wQwKvHLmNxYzP3vF9kLp2H"
+                    comment: "alice@laptop"
+                    options: ""
+              - name: bob
+                keys:
+                  - key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHmPqR3tYv8sL1kNjFkZ8wQwKvHLmNxYzP3vF9kLp2H"
+                    comment: "bob@desktop"
+                    options: ""
+          - file_prefix: robots
+            for_users:
+              - name: deployer
+                keys:
+                  - key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDmK2lPqR5vL9kNjFkZ8wQwKvHLmNxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qW"
+                    comment: "CI/CD deployment key"
+                    options: 'command="/usr/local/bin/deploy.sh"'
+        dci_sshd_remove_unmanaged: true
+
+    - name: "Phase 4: Verify only managed files remain"
+      ansible.builtin.find:
+        paths: "{{ test_directory }}"
+        file_type: file
+      register: all_files_after
+
+    - name: "Phase 4: Display files after cleanup"
+      ansible.builtin.debug:
+        msg: "Files remaining: {{ all_files_after.files | map(attribute='path') | map('basename') | list | sort }}"
+
+    - name: "Phase 4: Get list of remaining filenames"
+      ansible.builtin.set_fact:
+        remaining_files: "{{ all_files_after.files | map(attribute='path') | map('basename') | list }}"
+
+    - name: "Phase 4: Assert correct number of files remain"
+      ansible.builtin.assert:
+        that:
+          - all_files_after.matched == (managed_files | length) + (user_managed_files | length)
+        fail_msg: "Expected {{ (managed_files | length) + (user_managed_files | length) }} files, found {{ all_files_after.matched }}"
+        success_msg: "✓ Correct number of files: {{ all_files_after.matched }} files remain ({{ managed_files | length }} managed + {{ user_managed_files | length }} user-managed)"
+
+    - name: "Phase 4: Assert all managed files still exist"
+      ansible.builtin.assert:
+        that:
+          - item in remaining_files
+        fail_msg: "Managed file '{{ item }}' was incorrectly removed!"
+        success_msg: "✓ Managed file '{{ item }}' correctly kept"
+      loop: "{{ managed_files }}"
+
+    - name: "Phase 4: Assert all user-managed files still exist"
+      ansible.builtin.assert:
+        that:
+          - item in remaining_files
+        fail_msg: "User-managed file '{{ item }}' was incorrectly removed!"
+        success_msg: "✓ User-managed file '{{ item }}' correctly kept"
+      loop: "{{ user_managed_files }}"
+
+    - name: "Phase 4: Assert all unmanaged files were removed"
+      ansible.builtin.assert:
+        that:
+          - item not in remaining_files
+        fail_msg: "Unmanaged file '{{ item }}' was NOT removed!"
+        success_msg: "✓ Unmanaged file '{{ item }}' correctly removed"
+      loop: "{{ unmanaged_files }}"
+
+    - name: "Test Summary"
+      ansible.builtin.debug:
+        msg:
+          - "=========================================="
+          - "✓ TEST PASSED"
+          - "=========================================="
+          - "Ansible-managed files kept: {{ managed_files | join(', ') }}"
+          - "User-managed files kept: {{ user_managed_files | join(', ') }}"
+          - "Unmanaged files removed: {{ unmanaged_files | join(', ') }}"
+          - "Total files before: {{ all_files_before.matched }}"
+          - "Total files after: {{ all_files_after.matched }}"
+          - "Files removed: {{ all_files_before.matched - all_files_after.matched }}"
