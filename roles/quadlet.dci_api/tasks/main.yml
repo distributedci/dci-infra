@@ -62,6 +62,43 @@
         daemon-reload: true
       ignore_errors: "{{ ansible_check_mode }}"
 
+- name: Create the dci-mail-worker container
+  vars:
+    _quadlet: dci-mail-worker
+    _config: "{{ dci_mail_worker_spec }}"
+  block:
+    # Since the image is shared with dci-control-server, we don't use a .image systemd definition
+    - name: Create container quadlet
+      ansible.builtin.template:
+        src: "global.container.j2"
+        dest: "/etc/containers/systemd/{{ _quadlet }}.container"
+        mode: '0640'
+      notify:
+        - Restart dci-mail-worker
+
+    - name: Start the container
+      ansible.builtin.systemd:
+        name: "{{ _quadlet }}.service"
+        state: started
+        daemon-reload: true
+      ignore_errors: "{{ ansible_check_mode }}"
+  rescue:
+    - name: systemctl status
+      ansible.builtin.command: systemctl --no-pager -l status dci-mail-worker.service
+      register: svc_status
+
+    - name: journalctl logs
+      ansible.builtin.command: journalctl --no-pager -l -xeu dci-mail-worker.service
+      register: svc_journal
+
+    - name: Print status output
+      ansible.builtin.debug:
+        var: svc_status.stdout_lines
+
+    - name: Print journal output
+      ansible.builtin.debug:
+        var: svc_journal.stdout_lines
+
 - name: Create the required amount of dci-api containers
   vars:
     _quadlet: dci-api

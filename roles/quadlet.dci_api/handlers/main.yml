@@ -15,4 +15,11 @@
   when: dci_api_auth_tracking_enabled
   ignore_errors: "{{ ansible_check_mode }}"
 
+- name: Restart dci-mail-worker
+  ansible.builtin.systemd:
+    name: dci-mail-worker.service
+    state: restarted
+    daemon-reload: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
 ...
