@@ -14,9 +14,9 @@ statsd_exporter_container_spec:
     --statsd.mapping-config={{ statsd_exporter_config_path }}
   ports:
     - "{{ statsd_exporter_web_port }}:{{ statsd_exporter_web_port }}"
-    - "{{ statsd_exporter_metrics_port }}:{{ statsd_exporter_metrics_port }}"
+    - "{{ statsd_exporter_metrics_port }}:{{ statsd_exporter_metrics_port }}/udp"
   volumes:
-    - "{{ statsd_exporter_config_path }}:{{ statsd_exporter_config_path }}:ro"
+    - "{{ statsd_exporter_config_path }}:{{ statsd_exporter_config_path }}:ro,Z"
   network: "{{ statsd_exporter_container_network }}"
   health:
     cmd: "/bin/wget --spider localhost:{{ statsd_exporter_web_port }}/-/healthy"
