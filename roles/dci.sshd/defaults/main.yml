@@ -1,0 +1,34 @@
+---
+# List of authorized keys file prefixes and their associated users/keys
+# Each entry must have a 'file_prefix' attribute
+# Entries with 'for_users' will have Ansible generate the key files
+# Entries without 'for_users' are user-managed (Ansible only reserves the path in sshd config)
+#
+# Example:
+# dci_sshd_users_authorized_keys:
+#   - file_prefix: user_managed
+#   - file_prefix: humans
+#     for_users:
+#       - name: ec2-user
+#         keys:
+#           - key: "ssh-rsa AAAAB3NzaC1..."
+#             comment: "John's laptop"
+#             options: 'from="192.168.1.*"'
+#       - name: www
+#         keys:
+#           - key: "ssh-ed25519 AAAAC3..."
+#             comment: "Jane's desktop"
+#             options: ""
+#   - file_prefix: robots
+#     for_users:
+#       - name: www
+#         keys:
+#           - key: "ssh-rsa ..."
+#             comment: "CI/CD key"
+#             options: ""
+dci_sshd_users_authorized_keys: []
+
+# Whether to remove unmanaged authorized keys files from /etc/ssh/authorized_keys.d/
+# When true, any files in the directory that don't match the configured prefixes will be removed
+# Default: false (additive mode - existing files are preserved)
+dci_sshd_remove_unmanaged: false

@@ -72,6 +72,11 @@
       tags:
         - base
 
+    - role: dci.sshd
+      tags:
+        - base
+        - sshd
+
     - role: infra.node_exporter
       tags:
         - base

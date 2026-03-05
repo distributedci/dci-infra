@@ -1,0 +1,155 @@
+---
+# Complete usage example for dci.sshd role
+# This demonstrates both user-managed and Ansible-managed authorized keys
+#
+# Usage: ansible-playbook complete-usage.yml
+#
+# This example:
+# 1. Creates SSH config paths for manual management (manual_admin)
+# 2. Generates authorized keys files for humans (developers/operators)
+# 3. Generates authorized keys files for robots (CI/CD systems)
+#
+# Generated files:
+#   /etc/ssh/authorized_keys.d/humans_ec2-user
+#   /etc/ssh/authorized_keys.d/humans_www
+#   /etc/ssh/authorized_keys.d/robots_www
+#   /etc/ssh/authorized_keys.d/robots_acme
+
+- name: Configure SSH with mixed authorized keys management
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install required Python SELinux libraries
+      ansible.builtin.package:
+        name:
+          - python3-libselinux
+          - policycoreutils-python-utils
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+  roles:
+    - role: ../../dci.sshd
+      dci_sshd_users_authorized_keys:
+        # User-managed entry - path reserved, no files generated
+        - file_prefix: manual_admin
+
+        # Ansible-managed entry for human users
+        - file_prefix: humans
+          for_users:
+            - name: ec2-user
+              keys:
+                - key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7XnrZJKlhAyFvDmKxKv+xYz8R9qJ5P2mNjFkZ8wQwKvHLmNxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qW"
+                  comment: "john@laptop"
+                  options: 'from="192.168.1.*"'
+                - key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQwEr2F+6vZ8L9kNjFkZ8wQwKvHLmNxYzP3vF9kLp2H"
+                  comment: "jane@desktop"
+                  options: ""
+
+            - name: www
+              keys:
+                - key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHmPqR3tYv8sL1kNjFkZ8wQwKvHLmNxYzP3vF9kLp2H"
+                  comment: "jane@desktop"
+                  options: ""
+
+        # Ansible-managed entry for automated systems
+        - file_prefix: robots
+          for_users:
+            - name: www
+              keys:
+                - key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDmK2lPqR5vL9kNjFkZ8wQwKvHLmNxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qW"
+                  comment: "CI/CD pipeline key 1"
+                  options: 'command="/usr/local/bin/deploy.sh"'
+                - key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC9pL3mK2lPqR5vL9kNjFkZ8wQwKvHLmNxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H4R5qWxYzP3vF9kLp2H"
+                  comment: "CI/CD pipeline key 2"
+                  options: 'command="/usr/local/bin/deploy.sh",no-port-forwarding,no-X11-forwarding'
+
+            - name: acme
+              keys:
+                - key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKvL8pM3nK2lPqR5vL9kNjFkZ8wQwKvHLmNxYzP3vF9k"
+                  comment: "ACME certificate renewal automation"
+                  options: 'command="/usr/local/bin/renew-certs.sh",no-pty'
+
+  post_tasks:
+    - name: Display SSH configuration
+      ansible.builtin.command: cat /etc/ssh/sshd_config.d/10-dci-authorized-keys.conf
+      register: ssh_config
+      changed_when: false
+
+    - name: Show SSH configuration
+      ansible.builtin.debug:
+        msg: "{{ ssh_config.stdout_lines }}"
+
+    - name: List generated authorized keys files
+      ansible.builtin.find:
+        paths: /etc/ssh/authorized_keys.d
+        file_type: file
+      register: key_files
+
+    - name: Display generated files
+      ansible.builtin.debug:
+        msg: "Generated {{ key_files.matched }} authorized keys files: {{ key_files.files | map(attribute='path') | list }}"
+
+    # SELinux Context Verification
+    - name: Display SELinux status
+      ansible.builtin.debug:
+        msg: "SELinux status: {{ ansible_selinux.status | default('disabled') }} (mode: {{ ansible_selinux.mode | default('N/A') }})"
+
+    - name: Verify SELinux context on authorized_keys.d directory
+      ansible.builtin.command: ls -Zd /etc/ssh/authorized_keys.d
+      register: dir_context
+      changed_when: false
+      when: ansible_selinux.status is defined and ansible_selinux.status == 'enabled'
+
+    - name: Display directory SELinux context
+      ansible.builtin.debug:
+        msg: "{{ dir_context.stdout }}"
+      when: ansible_selinux.status is defined and ansible_selinux.status == 'enabled'
+
+    - name: Verify SELinux context on generated files
+      ansible.builtin.command: ls -Z /etc/ssh/authorized_keys.d/
+      register: files_context
+      changed_when: false
+      when: ansible_selinux.status is defined and ansible_selinux.status == 'enabled'
+
+    - name: Display files SELinux contexts
+      ansible.builtin.debug:
+        msg: "{{ files_context.stdout_lines }}"
+      when: ansible_selinux.status is defined and ansible_selinux.status == 'enabled'
+
+    - name: Check SELinux file context policy
+      ansible.builtin.command: semanage fcontext -l
+      register: fcontext_policy
+      changed_when: false
+      failed_when: false
+      when: ansible_selinux.status is defined and ansible_selinux.status == 'enabled'
+
+    - name: Display relevant SELinux policy entries
+      ansible.builtin.debug:
+        msg: "{{ fcontext_policy.stdout_lines | select('search', 'authorized_keys') | list }}"
+      when: ansible_selinux.status is defined and ansible_selinux.status == 'enabled' and fcontext_policy.rc == 0
+
+    - name: Verify ssh_home_t policy for authorized_keys.d
+      ansible.builtin.assert:
+        that:
+          - fcontext_policy.stdout is search('/etc/ssh/authorized_keys\\\.d')
+          - fcontext_policy.stdout is search('ssh_home_t')
+        fail_msg: "SELinux policy for /etc/ssh/authorized_keys.d with ssh_home_t not found"
+        success_msg: "✓ SELinux policy correctly configured for /etc/ssh/authorized_keys.d"
+      when: ansible_selinux.status is defined and ansible_selinux.status == 'enabled' and fcontext_policy.rc == 0
+
+    - name: Verify directory has ssh_home_t context
+      ansible.builtin.assert:
+        that:
+          - dir_context.stdout is search('ssh_home_t')
+        fail_msg: "Directory /etc/ssh/authorized_keys.d does not have ssh_home_t context: {{ dir_context.stdout }}"
+        success_msg: "✓ Directory has correct SELinux context (ssh_home_t)"
+      when: ansible_selinux.status is defined and ansible_selinux.status == 'enabled'
+
+    - name: Verify all generated files have ssh_home_t context
+      ansible.builtin.assert:
+        that:
+          - files_context.stdout is search('ssh_home_t')
+        fail_msg: "Generated files do not have ssh_home_t context"
+        success_msg: "✓ All generated files have correct SELinux context (ssh_home_t)"
+      when: ansible_selinux.status is defined and ansible_selinux.status == 'enabled'

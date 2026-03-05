@@ -38,15 +38,21 @@
   include_role:
     name: epel
 
+- name: Update dnf cache
+  package:
+    update_cache: yes
+  async: 300
+  poll: 10
+  register: update_cache_result
+  until: update_cache_result is succeeded
+  retries: 2
+  delay: 30
+  ignore_errors: true
+
 - name: Ensure ca-certificates is up to date
   package:
     name: ca-certificates
-    update_cache: yes
     state: latest
-  register: ca_certificates_update
-  async: 300
-  poll: 5
-  until: ca_certificates_update.rc == 0
 
 - name: Remove python2-distro package
   package:

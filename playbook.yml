@@ -57,6 +57,7 @@
   become: yes
   roles:
     - common
+    - dci.sshd
     - prometheus-node-exporter
   tags:
     - dci-core
