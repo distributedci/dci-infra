@@ -32,7 +32,7 @@
 - name: Install dci-analytics unit file
   copy:
     src: "dci-analytics.service"
-    dest: "/usr/lib/systemd/system/{{ item }}"
+    dest: "/usr/lib/systemd/system/dci-analytics.service"
   notify:
     - Reload systemd for dci-analytics
     - Restart dci-analytics container
@@ -40,7 +40,7 @@
 - name: Install dci-analytics-worker unit file
   copy:
     src: "dci-analytics-worker.service"
-    dest: "/usr/lib/systemd/system/{{ item }}"
+    dest: "/usr/lib/systemd/system/dci-analytics-worker.service"
   notify:
     - Reload systemd for dci-analytics
     - Restart dci-analytics-worker container
@@ -48,7 +48,7 @@
 - name: Install dci-rabbitmq unit file
   copy:
     src: "dci-rabbitmq.service"
-    dest: "/usr/lib/systemd/system/{{ item }}"
+    dest: "/usr/lib/systemd/system/dci-rabbitmq.service"
   notify:
     - Reload systemd for dci-analytics
     - Restart dci-rabbitmq container
