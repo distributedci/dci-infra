@@ -23,8 +23,8 @@
 
 - name: Deploy custom AuthorizedKeysFile configuration
   ansible.builtin.template:
-    src: 10-dci-authorized-keys.conf.j2
-    dest: /etc/ssh/sshd_config.d/10-dci-authorized-keys.conf
+    src: 0-dci-authorized-keys.conf.j2
+    dest: /etc/ssh/sshd_config.d/0-dci-authorized-keys.conf
     owner: root
     group: root
     mode: "0644"
