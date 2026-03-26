@@ -31,6 +31,7 @@
       notify:
         - Restart dci-api
         - Restart dci-api-auth-tracking
+        - Restart dci-mail-worker
 
     - name: Pull dci-control-server image
       containers.podman.podman_image:
@@ -40,6 +41,7 @@
         - Run yolo backup with 'current' tag
         - Restart dci-api
         - Restart dci-api-auth-tracking
+        - Restart dci-mail-worker
 
 - name: Create the dci-api-auth-tracking container
   vars:
@@ -54,6 +56,27 @@
         mode: '0640'
       notify:
         - Restart dci-api-auth-tracking
+
+    - name: Start the container
+      ansible.builtin.systemd:
+        name: "{{ _quadlet }}.service"
+        state: started
+        daemon-reload: true
+      ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Create the dci-mail-worker container
+  vars:
+    _quadlet: dci-mail-worker
+    _config: "{{ dci_mail_worker_spec }}"
+  block:
+    # Since the image is shared with dci-control-server, we don't use a .image systemd definition
+    - name: Create container quadlet
+      ansible.builtin.template:
+        src: "global.container.j2"
+        dest: "/etc/containers/systemd/{{ _quadlet }}.container"
+        mode: '0640'
+      notify:
+        - Restart dci-mail-worker
 
     - name: Start the container
       ansible.builtin.systemd:
