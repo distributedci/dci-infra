@@ -6,7 +6,7 @@ The primary intent is to centrally manage SSH keys through automation, complemen
 
 ## Description
 
-The role creates a configuration file `/etc/ssh/sshd_config.d/10-dci-authorized-keys.conf` that specifies the `AuthorizedKeysFile` directive with custom locations for SSH public keys, in addition to the default `.ssh/authorized_keys` location.
+The role creates a configuration file `/etc/ssh/sshd_config.d/0-dci-authorized-keys.conf` that specifies the `AuthorizedKeysFile` directive with custom locations for SSH public keys, in addition to the default `.ssh/authorized_keys` location.
 
 Additionally, the role will create user-specific authorized keys files in `/etc/ssh/authorized_keys.d/` with custom SSH key options and comments.
 
@@ -31,7 +31,7 @@ Additionally, the role will create user-specific authorized keys files in `/etc/
 
 ```
 
-This will generate `/etc/ssh/sshd_config.d/10-dci-authorized-keys.conf` with:
+This will generate `/etc/ssh/sshd_config.d/0-dci-authorized-keys.conf` with:
 
 ```
 AuthorizedKeysFile .ssh/authorized_keys /etc/ssh/authorized_keys.d/usage_one_%u /var/lib/sshd/authorized_keys/usage_two_%u
@@ -74,7 +74,7 @@ The admin can then add keys to e.g. `/etc/ssh/authorized_keys.d/usage_one_www` t
                   comment: "Key for acme user to deploy new certificates"
 ```
 
-This will generate `/etc/ssh/sshd_config.d/10-dci-authorized-keys.conf` with:
+This will generate `/etc/ssh/sshd_config.d/0-dci-authorized-keys.conf` with:
 
 ```
 AuthorizedKeysFile .ssh/authorized_keys /etc/ssh/authorized_keys.d/humans_%u /var/lib/sshd/authorized_keys/robots_%u

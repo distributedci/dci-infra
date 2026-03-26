@@ -7,8 +7,10 @@
       register: aws_cli_binary
 
     - name: Install the aws-cli package
+      vars:
+        yolo_backup_awscli_package: "{{ 'awscli2' if ansible_distribution_major_version | int >= 9 else 'awscli' }}"
       package:
-        name: awscli
+        name: "{{ yolo_backup_awscli_package }}"
       become: true
       become_user: root
       when:

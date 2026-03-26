@@ -72,7 +72,7 @@
 
   post_tasks:
     - name: Display SSH configuration
-      ansible.builtin.command: cat /etc/ssh/sshd_config.d/10-dci-authorized-keys.conf
+      ansible.builtin.command: cat /etc/ssh/sshd_config.d/0-dci-authorized-keys.conf
       register: ssh_config
       changed_when: false
 
