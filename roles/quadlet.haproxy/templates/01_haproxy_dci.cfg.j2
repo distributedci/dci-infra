@@ -12,6 +12,15 @@ frontend dci-in
   capture request header Referer len 30
   capture request header User-Agent len 50
 
+  # Extract authorization type & user-id  and include them in the logs
+  http-request set-var(txn.auth_type) http_auth_type
+  http-request set-var(txn.user_id) http_auth_user if { http_auth_type -m str Basic }
+  http-request set-var(txn.user_id) http_auth_bearer,jwt_payload_query('$.sub') if { http_auth_type -m str Bearer }
+  http-request set-var(txn.auth_type) req.hdr(authorization,1),word(1,\ ) if !{ http_auth_type -m found }{ req.hdr_cnt(authorization) gt 0 }
+  http-request set-var(txn.user_id) req.hdr(authorization,1),word(2,=) if { var(txn.auth_type) -m sub HMAC }
+  http-request capture var(txn.auth_type) len 15
+  http-request capture var(txn.user_id) len 80
+
   # https://docs.haproxy.org/3.0/configuration.html#4-monitor-uri
   # Could be enhanced with `monitor fail`, e.g.
   # |> monitor fail if { nbsrv(webservers) eq 0 }
