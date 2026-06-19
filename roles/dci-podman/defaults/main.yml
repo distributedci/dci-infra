@@ -1,10 +1,4 @@
 ---
-quadlet_packages:
-  - podman
-  - podman-plugins
-quadlet_container_networks:
-  quadlet: 192.168.100.0/24
-
 # Retention period for unused podman images
 # Images not used for this duration will be pruned
 # Recommended: 48h (2 days) - balances disk space with image reuse

@@ -1,0 +1,13 @@
+[Unit]
+Description=Clean unused podman resources
+Documentation=man:podman-container-prune(1) man:podman-image-prune(1)
+
+[Service]
+Type=oneshot
+ExecStart=podman container prune --force
+ExecStart=podman image prune --force --all --filter='until={{ podman_image_prune_until }}'
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

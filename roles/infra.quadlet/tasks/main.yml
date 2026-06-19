@@ -3,6 +3,24 @@
   ansible.builtin.dnf:
     name: "{{ quadlet_packages }}"
 
+- name: "Create unit file for {{ item }}"
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/etc/systemd/system/{{ item }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop:
+    - podman-prune.service
+    - podman-prune.timer
+
+- name: Enable podman-prune.timer timer
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    name: podman-prune.timer
+    enabled: true
+    state: started
+
 - name: Create quadlet subnets
   vars:
     _name: "{{ item.key }}"
