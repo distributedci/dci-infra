@@ -1,5 +1,7 @@
 backend dci-ui
+  option httpchk HEAD /
+  http-check expect status 200
+
 {% for n in range(dci_ui_container_scale) %}
   server ui{{ n }} dci-ui-{{ n }}:80 check
 {% endfor %}
-
