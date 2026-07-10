@@ -1,6 +1,13 @@
 backend dci-api
   option httpchk HEAD /api/v1/
+  # +3s grace period so gunicorn can emit its own error before HAProxy cuts the connection
+  # we shouldn't have to change this value, only `gunicorn_timeout`
+  timeout server {{ gunicorn_timeout + 3 }}s
+
+  # Disable retries for POST on L7 errors (idempotence)
+  # Could also be used to disable retrying some heavy requests
+  http-request disable-l7-retry if METH_POST
 
 {% for n in range(dci_api_container_scale) %}
-  server api{{ n }} dci-api-{{ n }}:5000 check
+  server api{{ n }} dci-api-{{ n }}:5000 check maxconn {{ gunicorn_worker_connections * gunicorn_nb_workers }}
 {% endfor %}

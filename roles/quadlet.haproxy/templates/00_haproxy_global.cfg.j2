@@ -23,20 +23,23 @@ global
 defaults
   mode http
   option forwardfor
-  default-server init-addr last,none resolvers default
+  default-server init-addr last,none resolvers default inter 3s fall 3 rise 2
   log global
 
   # Retries
-  retries 5
+  retries 2
   retry-on all-retryable-errors
   # If a backend fails, try the next one.
-  # Add an integer to retry the first backend N times.
-  option redispatch
+  # Add an integer to retry each backend N times.
+  # Defaults to -1, only redispatch on the last retry.
+  option redispatch 1
   # Timeouts
   timeout connect 3s
   timeout server 30s
   timeout client 10s
   timeout http-request 10s
+  timeout queue 10s
+  timeout check 3s
 
 resolvers default
   # Might be required depending on deployment method
@@ -64,4 +67,3 @@ frontend prometheus
   mode http
   http-request use-service prometheus-exporter if { path /metrics }
   no log
-
