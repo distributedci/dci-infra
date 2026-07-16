@@ -53,4 +53,6 @@ gunicorn_graceful_timeout: 90
 gunicorn_extra_cmd_args: ""
 
 rhdl_api_url: "https://api.rhdl.distributed-ci.io/api/v1"
+
+analytics_jwt_secret: ""
 ...
