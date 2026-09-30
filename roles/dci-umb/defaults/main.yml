@@ -1,4 +1,26 @@
 ---
+# New Kafka vars
+dci_umb_kafka_enable_auto_commit: true
+dci_umb_kafka_auto_offset_reset: earliest
+dci_umb_kafka_sasl_mechanism: SCRAM-SHA-512
+dci_umb_kafka_security_protocol: SASL_SSL
+
+dci_umb_kafka_bootstrap_servers:
+  - server-one:1234
+  - server-two:1234
+  - server-three:1234
+
+dci_umb_kafka_consumer_topics:
+  - complete.path.to.topic1
+  - complete.path.to.topic2
+
+dci_umb_kafka_consumer_group_id: unique-consumer-group-id
+dci_umb_kafka_sasl_username: username
+dci_umb_kafka_sasl_password: password
+
+dci_umb_kafka_feeder_url: https://host.example.com/events
+
+# Deprecated umb vars
 dci_umb_topic_sources:
   - queue://Consumer.name.VirtualTopic.example1.name
   - topic://VirtualTopic.example2.name
