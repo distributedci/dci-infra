@@ -26,8 +26,7 @@ ExecStart=/usr/bin/podman run \
     --name dci-umb \
     --label io.containers.autoupdate=registry \
     --volume {{ dci_umb_certs_basedir }}:{{ dci_umb_certs_basedir }}:z \
-    registry.distributed-ci.io/distributedci/dci-umb:latest \
-    dci-umb
+    registry.distributed-ci.io/distributedci/dci-umb:latest
 ExecStop=/usr/bin/podman stop --ignore --cidfile=%t/%n.ctr-id
 ExecStopPost=/usr/bin/podman rm -f --ignore --cidfile=%t/%n.ctr-id
 Type=notify
