@@ -22,7 +22,7 @@
     registry: "{{ dciumb_registry_url }}"
 
 - name: Create the dci-umb settings directory
-  file:
+  ansible.builtin.file:
     path: /etc/dci-umb
     state: directory
     mode: '0750'
@@ -30,7 +30,7 @@
     group: root
 
 - name: Create dci-umb settings environment file
-  template:
+  ansible.builtin.template:
     src: dci-umb.env.j2
     dest: /etc/dci-umb/dci-umb.env
     mode: '0640'
@@ -39,40 +39,8 @@
   notify:
     - restart dci-umb
 
-- name: Create the dci-umb certificates directory
-  file:
-    path: '{{ dci_umb_certs_basedir }}'
-    state: directory
-    mode: '0750'
-    owner: root
-    group: root
-
-- name: Create the dci-umb client certificate
-  copy:
-    dest: '{{ dci_umb_crt_file_path }}'
-    content: '{{ dci_umb_crt }}'
-    mode: '0640'
-    owner: root
-    group: root
-
-- name: Create the dci-umb client certificate key
-  copy:
-    dest: '{{ dci_umb_key_file_path }}'
-    content: '{{ dci_umb_key }}'
-    mode: '0640'
-    owner: root
-    group: root
-
-- name: Create the dci-umb certificate authority file
-  copy:
-    dest: '{{ dci_umb_ca_file_path }}'
-    content: '{{ dci_umb_ca }}'
-    mode: '0640'
-    owner: root
-    group: root
-
 - name: Create the dci-umb systemd unit file
-  template:
+  ansible.builtin.template:
     src: container-dci-umb.service.j2
     dest: /etc/systemd/system/container-dci-umb.service
     mode: '0644'
@@ -82,8 +50,16 @@
     - restart dci-umb
   register: dci_umb_systemd_unit
 
+- name: Pull the container image
+  containers.podman.podman_image:
+    name: registry.distributed-ci.io/distributedci/dci-umb:latest
+    force: true
+  notify:
+    - restart dci-umb
+
+
 - name: Enable the dci-umb service
-  systemd:
+  ansible.builtin.systemd:
     name: container-dci-umb.service
     state: started
     enabled: true

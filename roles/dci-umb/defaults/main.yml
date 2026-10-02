@@ -1,6 +1,5 @@
 ---
-# New Kafka vars
-dci_umb_kafka_enable_auto_commit: true
+# Vars for Kafka
 dci_umb_kafka_auto_offset_reset: earliest
 dci_umb_kafka_sasl_mechanism: SCRAM-SHA-512
 dci_umb_kafka_security_protocol: SASL_SSL
@@ -19,11 +18,3 @@ dci_umb_kafka_sasl_username: username
 dci_umb_kafka_sasl_password: password
 
 dci_umb_kafka_feeder_url: https://host.example.com/events
-
-# Deprecated umb vars
-dci_umb_topic_sources:
-  - queue://Consumer.name.VirtualTopic.example1.name
-  - topic://VirtualTopic.example2.name
-dci_umb_brokers: amqps://broker.example.com
-dci_umb_destination_urls:
-  - http://dci-feeder-api.example.com/events
