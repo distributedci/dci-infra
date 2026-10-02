@@ -1,6 +1,5 @@
 ---
 # Vars for Kafka
-dci_umb_kafka_enable_auto_commit: true
 dci_umb_kafka_auto_offset_reset: earliest
 dci_umb_kafka_sasl_mechanism: SCRAM-SHA-512
 dci_umb_kafka_security_protocol: SASL_SSL
