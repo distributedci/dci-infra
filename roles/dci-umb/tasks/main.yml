@@ -50,6 +50,14 @@
     - restart dci-umb
   register: dci_umb_systemd_unit
 
+- name: Pull the container image
+  containers.podman.podman_image:
+    name: registry.distributed-ci.io/distributedci/dci-umb:latest
+    force: true
+  notify:
+    - restart dci-umb
+
+
 - name: Enable the dci-umb service
   systemd:
     name: container-dci-umb.service
