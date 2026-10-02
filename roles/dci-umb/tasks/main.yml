@@ -22,7 +22,7 @@
     registry: "{{ dciumb_registry_url }}"
 
 - name: Create the dci-umb settings directory
-  file:
+  ansible.builtin.file:
     path: /etc/dci-umb
     state: directory
     mode: '0750'
@@ -30,7 +30,7 @@
     group: root
 
 - name: Create dci-umb settings environment file
-  template:
+  ansible.builtin.template:
     src: dci-umb.env.j2
     dest: /etc/dci-umb/dci-umb.env
     mode: '0640'
@@ -40,7 +40,7 @@
     - restart dci-umb
 
 - name: Create the dci-umb systemd unit file
-  template:
+  ansible.builtin.template:
     src: container-dci-umb.service.j2
     dest: /etc/systemd/system/container-dci-umb.service
     mode: '0644'
@@ -59,7 +59,7 @@
 
 
 - name: Enable the dci-umb service
-  systemd:
+  ansible.builtin.systemd:
     name: container-dci-umb.service
     state: started
     enabled: true
