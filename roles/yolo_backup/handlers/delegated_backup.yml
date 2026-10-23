@@ -7,7 +7,7 @@
   # Backups can take some time
   # To avoid ssh connection behaving badly (timeout, ansible not resuming after backup done)
   # we run as an async task, limiting it to 30 minutes and checking if it's done every 15 seconds
-  async: 1800
+  async: 3600
   poll: 15
   changed_when: true
   when:
