@@ -38,8 +38,8 @@ EnvironmentFile={{ _config.env_file }}
 {% endif %}
 {% if _config.health | default({}) | length > 0 -%}
 HealthCmd={{ _config.health.cmd }}
-HealthInterval={{ _config.health.interval | default('5s') }}
-HealthRetries={{ _config.health.retries | default('5') }}
+HealthInterval={{ _config.health.interval | default('60s') }}
+HealthRetries={{ _config.health.retries | default('3') }}
 HealthStartPeriod={{ _config.health.start_period | default('10s') }}
 HealthTimeout={{ _config.health.timeout | default('5s') }}
 {% endif %}
