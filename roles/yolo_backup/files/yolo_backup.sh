@@ -17,9 +17,9 @@ function do_snap() {
   # this should create the snapshot with pg_dump
   TS="$1"
   if [ -f /usr/bin/pg_dump ]; then
-    /usr/bin/pg_dump -d dci -Fc --file "${BASEDIR}/db_dump-${TS}"
+    /usr/bin/pg_dump -d dci -Fc --compress=zstd:1 --file "${BASEDIR}/db_dump-${TS}"
   else
-    sudo podman exec postgresql pg_dump -d dci -Fc >"${BASEDIR}/db_dump-${TS}"
+    sudo podman exec postgresql pg_dump -d dci -Fc --compress=zstd:1 >"${BASEDIR}/db_dump-${TS}"
   fi
 }
 
