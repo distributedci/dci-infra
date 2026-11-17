@@ -4,7 +4,7 @@ nginx_group: root
 nginx_listen_http_port: 80
 nginx_config_dir: /etc/nginx
 nginx_config_locations: {}
-nginx_container_image: public.ecr.aws/library/nginx:1-alpine
+nginx_container_image: public.ecr.aws/docker/library/nginx:1-alpine
 nginx_container_ports:
   - "{{ nginx_listen_http_port }}:80"
 nginx_container_volumes:
