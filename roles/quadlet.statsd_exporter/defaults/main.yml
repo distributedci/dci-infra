@@ -1,7 +1,7 @@
 ---
 statsd_exporter_web_port: 9102
 statsd_exporter_metrics_port: 9125
-statsd_exporter_container_image: docker.io/prom/statsd-exporter:latest
+statsd_exporter_container_image: quay.io/prometheus/statsd-exporter:latest
 statsd_exporter_container_network: quadlet.network
 statsd_exporter_config_path: /etc/statsd-exporter.yml
 statsd_exporter_config_mappings: {}

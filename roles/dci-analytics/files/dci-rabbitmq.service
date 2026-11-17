@@ -12,7 +12,7 @@ Environment=PODMAN_SYSTEMD_UNIT=%n
 Restart=on-failure
 TimeoutStopSec=70
 ExecStartPre=/bin/rm -f %t/container-dci-rabbitmq.pid %t/container-dci-rabbitmq.ctr-id
-ExecStart=/usr/bin/podman run --network=host --conmon-pidfile=%t/container-dci-rabbitmq.pid --cidfile=%t/container-dci-rabbitmq.ctr-id --cgroups=no-conmon -d --replace --name dci-rabbitmq -p 5672:5672 -v /opt/rabbitmq/data:/var/lib/rabbitmq:Z docker.io/library/rabbitmq:latest
+ExecStart=/usr/bin/podman run --network=host --conmon-pidfile=%t/container-dci-rabbitmq.pid --cidfile=%t/container-dci-rabbitmq.ctr-id --cgroups=no-conmon -d --replace --name dci-rabbitmq -p 5672:5672 -v /opt/rabbitmq/data:/var/lib/rabbitmq:Z public.ecr.aws/docker/library/rabbitmq:latest
 ExecStop=/usr/bin/podman stop --ignore --cidfile=%t/container-dci-rabbitmq.ctr-id -t 10
 ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile=%t/container-dci-rabbitmq.ctr-id
 PIDFile=%t/container-dci-rabbitmq.pid
