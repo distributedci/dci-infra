@@ -1,6 +1,7 @@
 ---
 domain_exporter_http_port: 9222
-domain_exporter_version: 1.25.0
+# 1.25.0 can't find whois for .io ?!
+domain_exporter_version: 1.24.0
 domain_exporter_container_image: ghcr.io/caarlos0/domain_exporter:v{{ domain_exporter_version }}
 domain_exporter_container_network: quadlet.network
 domain_exporter_container_spec:
