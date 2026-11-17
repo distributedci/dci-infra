@@ -22,19 +22,31 @@
       file:
         path: ~/.aws
         state: directory
-        mode: 0700
+        mode: '0700'
 
     - name: aws cli defaults
       template:
         src: aws_config.j2
         dest: ~/.aws/config
-        mode: 0600
+        mode: '0600'
 
     - name: aws cli credentials
       template:
         src: aws_credentials.j2
         dest: ~/.aws/credentials
-        mode: 0600
+        mode: '0600'
+      when:
+        - yolo_backup_aws_access_key_id | default('', true) | string | length > 0
+        - yolo_backup_aws_secret_access_key | default('', true) | string | length > 0
+
+    - name: Remove aws cli credentials
+      ansible.builtin.file:
+        path: ~/.aws/credentials
+        state: absent
+      when: >
+        (yolo_backup_aws_access_key_id | default('', true) | string | length == 0) or
+        (yolo_backup_aws_secret_access_key | default('', true) | string | length == 0)
+
   tags:
     - aws
 
@@ -44,7 +56,7 @@
       copy:
         src: yolo_backup.sh
         dest: ~/yolo_backup.sh
-        mode: 0700
+        mode: '0700'
 
     - name: yolo_backup cron jobs send emails to some people
       cron:
