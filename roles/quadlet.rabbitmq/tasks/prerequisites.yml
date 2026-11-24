@@ -1,0 +1,35 @@
+---
+- name: Manage group
+  ansible.builtin.group:
+    name: "{{ rabbitmq_group }}"
+    state: present
+    system: true
+    gid: "{{ rabbitmq_gid }}"
+
+- name: Manage user
+  ansible.builtin.user:
+    name: "{{ rabbitmq_user }}"
+    state: present
+    system: true
+    uid: "{{ rabbitmq_uid }}"
+    group: "{{ rabbitmq_group }}"
+    home: "{{ rabbitmq_data_dir }}"
+    create_home: false
+    shell: /usr/sbin/nologin
+
+- name: Create data directory
+  ansible.builtin.file:
+    path: "{{ rabbitmq_data_dir }}"
+    state: directory
+    mode: '0750'
+    owner: "{{ rabbitmq_user }}"
+    group: "{{ rabbitmq_group }}"
+
+- name: Create container config directory
+  ansible.builtin.file:
+    path: "{{ rabbitmq_config_dir }}"
+    state: directory
+    mode: '0750'
+    owner: root
+    group: "{{ rabbitmq_group }}"
+...

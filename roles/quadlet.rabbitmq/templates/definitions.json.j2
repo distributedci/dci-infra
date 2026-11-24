@@ -1,0 +1,44 @@
+{#
+  Managed by ansible (role quadlet.rabbitmq) -- do not edit by hand.
+
+  Built as a data structure and serialised with to_nice_json so that
+  passwords containing quotes/backslashes are escaped correctly and the
+  file is always valid JSON.
+
+  Passwords are given in cleartext: RabbitMQ hashes them on import. The
+  rendered file is mode 0600 and contains secrets.
+-#}
+{% set _users = [] %}
+{% for _u in rabbitmq_users %}
+{%   set _ = _users.append({
+       'name': _u.name,
+       'password': _u.password,
+       'tags': _u.tags | default([]),
+     }) %}
+{% endfor %}
+{% set _vhosts = [] %}
+{% for _v in rabbitmq_vhosts %}
+{%   set _ = _vhosts.append({'name': _v}) %}
+{% endfor %}
+{% set _permissions = [] %}
+{% for _u in rabbitmq_users %}
+{%   for _p in _u.permissions | default([]) %}
+{%     set _ = _permissions.append({
+         'user': _u.name,
+         'vhost': _p.vhost | default('/'),
+         'configure': _p.configure | default('.*'),
+         'write': _p.write | default('.*'),
+         'read': _p.read | default('.*'),
+       }) %}
+{%   endfor %}
+{% endfor %}
+{{ {
+     'users': _users,
+     'vhosts': _vhosts,
+     'permissions': _permissions,
+     'parameters': [],
+     'policies': [],
+     'queues': [],
+     'exchanges': [],
+     'bindings': [],
+   } | to_nice_json }}

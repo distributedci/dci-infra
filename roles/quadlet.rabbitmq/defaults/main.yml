@@ -1,0 +1,109 @@
+---
+# User/group owning the data, config and certificates on the host.
+# The uid/gid MUST match the "rabbitmq" user inside the container image,
+# otherwise the broker cannot read its certificates or its data directory.
+rabbitmq_user: rabbitmq
+rabbitmq_group: rabbitmq
+rabbitmq_uid: 999
+rabbitmq_gid: 999
+
+# Pinned deliberately. The .image quadlet unit runs "podman image pull" on
+# every boot, so a floating tag such as "latest" lets an unattended reboot move
+# the broker across a minor or even a major version. Pinning to a major.minor
+# series keeps patch releases flowing while making any larger jump an explicit
+# commit. Upgrading past 4.4 is a deliberate change, not a side effect.
+rabbitmq_version: "4.4"
+rabbitmq_container_image: "public.ecr.aws/docker/library/rabbitmq:{{ rabbitmq_version }}"
+
+rabbitmq_data_dir: /opt/rabbitmq/data
+rabbitmq_config_dir: /etc/rabbitmq-container
+rabbitmq_cert_dir: "{{ rabbitmq_config_dir }}/certs"
+
+# Path of the definitions file *inside* the container
+rabbitmq_definitions_container_path: /etc/rabbitmq/definitions.json
+
+# --- Listeners -------------------------------------------------------------
+# Both listeners can be enabled/disabled independently. Disabling one also
+# removes its published port and closes it in the firewall.
+rabbitmq_cleartext_enabled: true
+rabbitmq_cleartext_port: 5672
+
+rabbitmq_tls_enabled: true
+rabbitmq_tls_port: 5671
+# The broker does not ask clients for a certificate. Set to "verify_peer" with
+# rabbitmq_tls_fail_if_no_peer_cert=true only once all clients present certs.
+rabbitmq_tls_verify: verify_none
+rabbitmq_tls_fail_if_no_peer_cert: false
+
+# Name of the entry to pick from dci_ca.servercerts (see dci_ca.yml)
+rabbitmq_ca_servercert_name: rabbitmq
+
+# --- Prometheus ------------------------------------------------------------
+# The rabbitmq_prometheus plugin is enabled by default in the upstream image.
+# This flag controls whether the endpoint is published and firewalled open,
+# not whether the plugin runs.
+rabbitmq_prometheus_enabled: true
+rabbitmq_prometheus_port: 15692
+rabbitmq_prometheus_firewalld_zone: "{{ simple_firewalld_monitoring_zone | default('monitoring') }}"
+
+# --- Firewall --------------------------------------------------------------
+# NOTE: role defaults do not cross play boundaries. infra.simple runs in a
+# different play from this role, so simple_firewalld_* is only in scope here if
+# it is also defined in inventory. The literal fallbacks make sure the ports
+# never silently land in the default (public) zone.
+rabbitmq_firewalld_zone: "{{ simple_firewalld_rabbitmq_access_zone | default('rabbitmq-access') }}"
+
+# --- Users / vhosts / permissions ------------------------------------------
+# Provisioned declaratively through a definitions file loaded at boot.
+# Importing definitions also suppresses creation of the default guest user.
+#
+# rabbitmq_users:
+#   - name: dci-api
+#     password: "{{ vault_rabbitmq_dci_api_password }}"
+#     tags: []
+#     permissions:
+#       - vhost: /
+#         configure: ".*"
+#         write: ".*"
+#         read: ".*"
+rabbitmq_users: []
+rabbitmq_vhosts:
+  - /
+
+# --- Container -------------------------------------------------------------
+rabbitmq_container_network: quadlet.network
+
+rabbitmq_container_ports: >-
+  {{
+    ((rabbitmq_cleartext_enabled | bool) | ternary([rabbitmq_cleartext_port ~ ':' ~ rabbitmq_cleartext_port], []))
+    + ((rabbitmq_tls_enabled | bool) | ternary([rabbitmq_tls_port ~ ':' ~ rabbitmq_tls_port], []))
+    + ((rabbitmq_prometheus_enabled | bool) | ternary([rabbitmq_prometheus_port ~ ':' ~ rabbitmq_prometheus_port], []))
+  }}
+
+# The image ships 10-defaults.conf (which enables console logging) and
+# 20-management_agent.disable_metrics_collector.conf in /etc/rabbitmq/conf.d,
+# so our drop-in must sort after them and must be mounted as a single file
+# rather than over the whole directory.
+rabbitmq_container_volumes: >-
+  {{
+    [
+      rabbitmq_data_dir ~ ':/var/lib/rabbitmq:Z',
+      rabbitmq_config_dir ~ '/30-dci.conf:/etc/rabbitmq/conf.d/30-dci.conf:ro',
+      rabbitmq_config_dir ~ '/definitions.json:' ~ rabbitmq_definitions_container_path ~ ':ro',
+    ]
+    + ((rabbitmq_tls_enabled | bool) | ternary([rabbitmq_cert_dir ~ ':/etc/rabbitmq/certs:ro'], []))
+  }}
+
+rabbitmq_container_spec:
+  image: "{{ rabbitmq_container_image }}"
+  ports: "{{ rabbitmq_container_ports }}"
+  volumes: "{{ rabbitmq_container_volumes }}"
+  network: "{{ rabbitmq_container_network }}"
+  health:
+    # Works over the Erlang distribution channel, so it stays valid whichever
+    # AMQP listeners are enabled.
+    cmd: "rabbitmq-diagnostics -q ping"
+    start_period: 60s
+  labels:
+    io.distributed-ci.svc: rabbitmq
+...

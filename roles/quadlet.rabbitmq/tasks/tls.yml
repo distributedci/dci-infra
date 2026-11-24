@@ -1,0 +1,31 @@
+---
+- name: Create the certificate directory
+  ansible.builtin.file:
+    path: "{{ rabbitmq_cert_dir }}"
+    state: directory
+    mode: '0750'
+    owner: "{{ rabbitmq_user }}"
+    group: "{{ rabbitmq_group }}"
+    setype: container_file_t
+
+- name: Make CA cert, cert and key available for RabbitMQ
+  ansible.builtin.copy:
+    content: "{{ item.content }}"
+    dest: "{{ rabbitmq_cert_dir }}/{{ item.filename }}"
+    owner: "{{ rabbitmq_user }}"
+    group: "{{ rabbitmq_group }}"
+    mode: "0600"
+    setype: container_file_t
+  no_log: true
+  loop:
+    - filename: ca-certificate.pem
+      content: "{{ dci_ca.ca_cert }}"
+    - filename: certificate.pem
+      content: "{{ dci_ca.servercerts[rabbitmq_ca_servercert_name].cert }}"
+    - filename: certificate.key
+      content: "{{ dci_ca.servercerts[rabbitmq_ca_servercert_name].key }}"
+  loop_control:
+    label: "{{ item.filename }}"
+  notify:
+    - Restart rabbitmq
+...

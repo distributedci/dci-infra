@@ -145,6 +145,17 @@
         - postgresql
         - podman
 
+- name: Setup rabbitmq broker
+  hosts: dci_rabbitmq:&dci_ng
+  gather_facts: true
+  become: true
+
+  roles:
+    - role: quadlet.rabbitmq
+      tags:
+        - rabbitmq
+        - podman
+
 - name: Setup haproxy
   hosts: dci_api:dci_doc:dci_ui:&dci_ng
   gather_facts: true
