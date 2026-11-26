@@ -4,10 +4,5 @@ After=network.target
 
 [Service]
 Type=oneshot
-User=dci
-Group=dci
-ExecStart=-/usr/bin/curl -XPOST http://127.0.0.1:2345/synchronization/duration_cumulated
-ExecStart=-/usr/bin/curl -XPOST http://127.0.0.1:2345/synchronization/components_coverage
-ExecStart=-/usr/bin/curl -XPOST http://127.0.0.1:2345/synchronization/junit
-ExecStart=-/usr/bin/curl -XPOST http://127.0.0.1:2345/synchronization/pipelines
-ExecStart=-/usr/bin/curl -XPOST http://127.0.0.1:2345/synchronization/jobs
+ExecStart=-/usr/bin/podman exec dci-analytics /opt/dci-analytics/bin/analytics-sync junit --type partial
+ExecStart=-/usr/bin/podman exec dci-analytics /opt/dci-analytics/bin/analytics-sync jobs --type partial
