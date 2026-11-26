@@ -1,0 +1,93 @@
+---
+- name: Verify if mandatory secrets are overriden
+  ansible.builtin.import_tasks:
+    file: verify_secrets.yml
+
+- name: Manage prerequisites
+  ansible.builtin.import_tasks:
+    file: prerequisites.yml
+
+- name: Manage TLS material
+  ansible.builtin.import_tasks:
+    file: tls.yml
+  when: rabbitmq_tls_enabled | bool
+
+- name: Render the RabbitMQ configuration drop-in
+  ansible.builtin.template:
+    src: 30-dci.conf.j2
+    dest: "{{ rabbitmq_config_dir }}/30-dci.conf"
+    owner: root
+    group: "{{ rabbitmq_group }}"
+    mode: '0640'
+    setype: container_file_t
+  notify:
+    - Restart rabbitmq
+
+- name: Render the RabbitMQ definitions file
+  ansible.builtin.template:
+    src: definitions.json.j2
+    dest: "{{ rabbitmq_config_dir }}/definitions.json"
+    owner: root
+    group: "{{ rabbitmq_group }}"
+    mode: '0640'
+    setype: container_file_t
+  no_log: true
+  notify:
+    - Restart rabbitmq
+
+- name: Create image quadlet
+  vars:
+    _quadlet: rabbitmq
+    _config: "{{ rabbitmq_container_spec }}"
+  ansible.builtin.template:
+    src: "global.image.j2"
+    dest: "/etc/containers/systemd/{{ _quadlet }}.image"
+    mode: '0640'
+  notify:
+    - Restart rabbitmq
+
+- name: Create container quadlet
+  vars:
+    _quadlet: rabbitmq
+    _config: "{{ rabbitmq_container_spec }}"
+  ansible.builtin.template:
+    src: "global.container.j2"
+    dest: "/etc/containers/systemd/{{ _quadlet }}.container"
+    mode: '0640'
+  notify:
+    - Restart rabbitmq
+
+- name: Manage access to the cleartext AMQP port in firewall
+  ansible.posix.firewalld:
+    port: "{{ rabbitmq_cleartext_port }}/tcp"
+    zone: "{{ rabbitmq_firewalld_zone | default(omit) }}"
+    state: "{{ (rabbitmq_cleartext_enabled | bool) | ternary('enabled', 'disabled') }}"
+    immediate: true
+    permanent: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Manage access to the TLS AMQP port in firewall
+  ansible.posix.firewalld:
+    port: "{{ rabbitmq_tls_port }}/tcp"
+    zone: "{{ rabbitmq_firewalld_zone | default(omit) }}"
+    state: "{{ (rabbitmq_tls_enabled | bool) | ternary('enabled', 'disabled') }}"
+    immediate: true
+    permanent: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Manage access to the prometheus metrics port in firewall
+  ansible.posix.firewalld:
+    port: "{{ rabbitmq_prometheus_port }}/tcp"
+    zone: "{{ rabbitmq_prometheus_firewalld_zone | default(omit) }}"
+    state: "{{ (rabbitmq_prometheus_enabled | bool) | ternary('enabled', 'disabled') }}"
+    immediate: true
+    permanent: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Ensure service is started
+  ansible.builtin.systemd:
+    name: rabbitmq.service
+    state: started
+    daemon-reload: true
+  ignore_errors: "{{ ansible_check_mode }}"
+...

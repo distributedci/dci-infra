@@ -1,0 +1,33 @@
+# Managed by ansible (role quadlet.rabbitmq) -- do not edit by hand.
+#
+# Sorts after the image-provided 10-defaults.conf and
+# 20-management_agent.disable_metrics_collector.conf drop-ins.
+
+{% if rabbitmq_cleartext_enabled | bool %}
+# Cleartext AMQP listener
+listeners.tcp.default = {{ rabbitmq_cleartext_port }}
+{% else %}
+# Cleartext AMQP listener disabled (rabbitmq_cleartext_enabled=false)
+listeners.tcp = none
+{% endif %}
+
+{% if rabbitmq_tls_enabled | bool %}
+# TLS AMQP listener, using the self-signed certificate issued by the DCI CA
+listeners.ssl.default = {{ rabbitmq_tls_port }}
+ssl_options.cacertfile = /etc/rabbitmq/certs/ca-certificate.pem
+ssl_options.certfile = /etc/rabbitmq/certs/certificate.pem
+ssl_options.keyfile = /etc/rabbitmq/certs/certificate.key
+ssl_options.verify = {{ rabbitmq_tls_verify }}
+ssl_options.fail_if_no_peer_cert = {{ rabbitmq_tls_fail_if_no_peer_cert | bool | lower }}
+{% else %}
+# TLS AMQP listener disabled (rabbitmq_tls_enabled=false)
+{% endif %}
+
+{% if rabbitmq_prometheus_enabled | bool %}
+# Built-in prometheus exporter (rabbitmq_prometheus plugin)
+prometheus.tcp.port = {{ rabbitmq_prometheus_port }}
+{% endif %}
+
+# Users, vhosts and permissions. Importing definitions at boot also prevents
+# the default guest user from being created on a fresh node.
+load_definitions = {{ rabbitmq_definitions_container_path }}
